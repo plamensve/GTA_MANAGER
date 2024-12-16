@@ -1,6 +1,58 @@
-{% extends 'base.html' %}>
+{% extends 'base.html' %}
+{% load placeholder_filter %}
+{% load static %}
 {% block content %}
-<body>
-    <h1>Test Index Page</h1>
-</body>
+    <body>
+    <div class="container" id="container" data-form-invalid="{% if form_invalid %}true{% else %}false{% endif %}">
+        <div class="form-container sign-up-container">
+            <form action="{% url 'index' %}" method="POST">
+                {% csrf_token %}
+                <h1>Създай профил</h1>
+                {{ register_form.username|placeholder:"Потребителско име" }}
+                {{ register_form.email|placeholder:"Имейл" }}
+                {{ register_form.password1|placeholder:"Парола" }}
+                {{ register_form.password2|placeholder:"Повтори паролата" }}
+                <input type="hidden" name="register" value="1">
+                <button type="submit">Регистрация</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="{% url 'index' %}" method="POST">
+                {% csrf_token %}
+                <h1>Вход в системата</h1>
+                {{ login_form.username|placeholder:"Потребителско име" }}
+                {{ login_form.password|placeholder:"Парола" }}
+                <input type="hidden" name="login" value="1">
+                <button type="submit">Вход</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Добре дошли!</h1>
+                    <p>Въведете Вашите данни за вход</p>
+                    <button class="ghost" id="signIn">Вход</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Здравейте!</h1>
+                    <p>Въведете Вашите данни за регистрация</p>
+                    <button class="ghost" id="signUp">Регистрация</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Plamen Svetoslavov - Всички права върху съдържанието са запазени ©</p>
+    </footer>
+    </body>
+    <script src="{% static 'js/signIn_signUp_form.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('container');
+            if (container.dataset.formInvalid === "true") {
+                container.classList.add("right-panel-active");
+            }
+        });
+    </script>
 {% endblock %}

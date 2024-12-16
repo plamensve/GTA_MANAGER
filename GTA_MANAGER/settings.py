@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My Apps
-    'GTA_MANAGER.web'
+    'GTA_MANAGER.web',
+    'GTA_MANAGER.accounts'
 ]
 
 MIDDLEWARE = [
@@ -139,4 +140,4 @@ MEDIA_URL = '/media/'
 #
 # LOGIN_REDIRECT_URL = reverse_lazy('index')
 # LOGOUT_REDIRECT_URL = reverse_lazy('index')
-# AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'
