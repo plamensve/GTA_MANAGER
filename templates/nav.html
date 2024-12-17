@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<nav class="navbar">
+    <div class="navbar-logo">GTA Manager</div>
+    <ul class="navbar-menu">
+        <li class="navbar-item"><a href="{% url 'front-page' %}" class="navbar-link">Табло</a></li>
+        <li class="navbar-item"><a href="#" class="navbar-link">Автомобили</a></li>
+        <li class="navbar-item"><a href="#" class="navbar-link">Камиони</a></li>
+        <li class="navbar-item"><a href="#" class="navbar-link">Профил</a></li>
+        <li class="navbar-item">
+            <form method="POST" action="{% url 'logout' %}" class="navbar-link-form">
+                {% csrf_token %}
+                <button type="submit" class="navbar-link logout-btn">Изход</button>
+            </form>
+        </li>
+    </ul>
+</nav>

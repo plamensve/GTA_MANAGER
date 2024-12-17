@@ -1,0 +1,106 @@
+.vehicle-form {
+    max-width: 600px;
+    margin: 170px auto 50px; /* Добавя 100px отстояние отгоре */
+    padding: 25px 30px;
+    background-color: #ffffff;
+    border: 1px solid #e0e4e7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 350px;
+    padding: 12px;
+    border: 1px solid #d0d4d7;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #333;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #3a7a7b;
+    box-shadow: 0 0 5px rgba(58, 122, 123, 0.5);
+    outline: none;
+}
+
+.form-group textarea {
+    width: 350px;
+    height: 100px; /* По-малка височина */
+    padding: 12px;
+    border: 1px solid #d0d4d7;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #333;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    resize: none; /* Забранява промяната на размера */
+}
+
+.form-group textarea:focus {
+    border-color: #3a7a7b;
+    box-shadow: 0 0 5px rgba(58, 122, 123, 0.5);
+    outline: none;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #3a7a7b;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-submit:hover {
+    background-color: #2e5e5f;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #3a7a7b;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-submit:hover {
+    background-color: #2e5e5f;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+

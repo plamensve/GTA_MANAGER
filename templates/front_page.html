@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+    <body class="profile-page">
+    {% include 'nav.html' %}
+
+    <main class="profile-main">
+        <section class="profile-header-section">
+            <div class="profile-picture-wrapper">
+                <img class="profile-picture-img" src="profile.jpg" alt="Профилна снимка">
+            </div>
+            <div class="profile-info-wrapper">
+                <h1 class="profile-name">Име на служител</h1>
+                <p class="profile-position">Длъжност: Управител Автопарк</p>
+                <p class="profile-email">Имейл: example@example.com</p>
+                <p class="profile-phone">Телефон: +359 888 123 456</p>
+            </div>
+        </section>
+
+        <section class="vehicle-overview-section">
+            <h2 class="vehicle-overview-title">Служебни превозни средства</h2>
+            <table class="vehicle-table">
+                <thead class="vehicle-table-head">
+                <tr class="vehicle-table-row header-row">
+                    <th class="vehicle-table-header">Nº</th>
+                    <th class="vehicle-table-header">Тип</th>
+                    <th class="vehicle-table-header">Марка</th>
+                    <th class="vehicle-table-header">Модел</th>
+                    <th class="vehicle-table-header">Рег. номер</th>
+                    <th class="vehicle-table-header">Състояние</th>
+                </tr>
+                </thead>
+                <tbody class="vehicle-table-body">
+                {% for vehicle in all_vehicles %}
+                    <tr class="vehicle-table-row">
+                        <td class="vehicle-table-data">{{ forloop.counter }}</td>
+                        <td class="vehicle-table-data">{{ vehicle.type|upper }}</td>
+                        <td class="vehicle-table-data">{{ vehicle.brand|upper }}</td>
+                        <td class="vehicle-table-data">{{ vehicle.model|upper }}</td>
+                        <td class="vehicle-table-data">{{ vehicle.register_number|upper }}</td>
+                        <td class="vehicle-table-data status-active">{{ vehicle.condition|upper }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="action-buttons-section">
+            <a href="{% url 'add-vehicle' %}" class="btn btn-add-vehicle">Добави превозно средство</a>
+            <button class="btn btn-generate-report">Генерирай отчет</button>
+        </section>
+    </main>
+    {% include 'footer.html' %}
+    </body>
+{% endblock %}

@@ -5,6 +5,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 
+from GTA_MANAGER.accounts.models import Vehicles
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -37,3 +39,46 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
         fields = '__all__'
+
+
+class VehicleCreateForm(forms.ModelForm):
+    class Meta:
+        model = Vehicles
+        fields = '__all__'
+
+        labels = {
+            'type': '',
+            'brand': '',
+            'model': '',
+            'register_number': '',
+            'condition': '',
+        }
+
+        widgets = {
+            'type': forms.Select(attrs={'placeholder': 'Изберете тип'}),
+            'brand': forms.TextInput(attrs={'placeholder': 'Марка на превозното средство'}),
+            'model': forms.TextInput(attrs={'placeholder': 'Модел на превозното средство'}),
+            'register_number': forms.TextInput(attrs={'placeholder': 'Регистрационен номер'}),
+            'condition': forms.Textarea(attrs={'placeholder': 'Състояние на превозното средство'}),
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
