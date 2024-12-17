@@ -1,0 +1,11 @@
+.error-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px 0;
+    color: #dc3545; /* Червен цвят за грешките */
+}
+
+.error {
+    font-size: 0.9em;
+    color: #dc3545;
+}

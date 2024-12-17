@@ -114,14 +114,14 @@ body.profile-page {
 
 /* Секция Превозни средства */
 .vehicle-overview-section {
-    margin-bottom: 50px; /* По-голямо разстояние */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрира съдържанието по ширината на секцията */
 }
 
 .vehicle-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 1.1em; /* Увеличен шрифт */
+    width: 100%; /* Запазва таблицата широка спрямо секцията */
+    max-width: 1000px; /* Можеш да добавиш максимална ширина */
 }
 
 .vehicle-table th {
@@ -149,36 +149,36 @@ body.profile-page {
 
 /* Промяна на бутони */
 .action-buttons-section {
-    text-align: right;
+    display: flex;
+    justify-content: center; /* Центрира бутоните хоризонтално */
     margin-top: 30px;
+    margin-bottom: 20px; /* Леко разстояние преди таблицата */
+    width: 100%;
 }
 
 .btn {
-    padding: 12px 24px;
+    padding: 12px 24px; /* Унифициран padding */
     font-size: 1.1em;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s, color 0.3s;
+    text-align: center;
 }
 
-.btn-add-vehicle {
+.btn-add-vehicle,
+.btn-generate-report {
     background-color: #3a7a7b;
     color: #fff;
     margin-right: 10px;
+    display: inline-block; /* Прави ги еднакви */
+    min-width: 200px; /* Задава минимална ширина */
 }
 
-.btn-add-vehicle:hover {
+.btn-add-vehicle:hover,
+.btn-generate-report:hover {
     background-color: #2e6062;
 }
 
-.btn-generate-report {
-    background-color: #555;
-    color: #fff;
-}
-
-.btn-generate-report:hover {
-    background-color: #444;
-}
 
 /* Footer */
 .profile-footer {

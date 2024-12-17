@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 
-from GTA_MANAGER.accounts.models import Vehicles
+from GTA_MANAGER.accounts.models import Vehicles, CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -36,9 +36,21 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
-    class Meta(UserChangeForm.Meta):
-        model = get_user_model()
-        fields = '__all__'
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'first_name', 'last_name', 'email')  # Само тези полета
+
+        labels = {
+            'username': 'Потребителско име',
+            'first_name': 'Име',
+            'last_name': 'Фамилия',
+            'email': 'Имейл',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'password' in self.fields:
+            del self.fields['password']
 
 
 class VehicleCreateForm(forms.ModelForm):

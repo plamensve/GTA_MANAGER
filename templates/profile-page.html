@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    {% include 'nav.html' %}
+
+    <div class="profile-container-page">
+        <div class="profile-header-section">
+            <h1 class="profile-title-heading">Профил на потребителя</h1>
+        </div>
+
+        <div class="profile-main-content">
+            <div class="profile-info-box">
+                <div class="profile-avatar-container">
+                    <!-- Място за аватар -->
+                    <img src="{% static 'images/profile-picture.jpg' %}" alt="Avatar" class="profile-avatar-img">
+                </div>
+                <div class="profile-details-box">
+                    <p class="profile-detail-item"><strong>Потребителско име:</strong> {{ current_user.username }}</p>
+                    <p class="profile-detail-item"><strong>Име:</strong> {{ current_user.first_name }}</p>
+                    <p class="profile-detail-item"><strong>Фамилия:</strong> {{ current_user.last_name }}</p>
+                    <p class="profile-detail-item"><strong>Email:</strong> {{ current_user.email }}</p>
+                    <p class="profile-detail-item"><strong>Дата на регистрация:</strong> {{ current_user.date_joined }}</p>
+                    <p class="profile-detail-item"><strong>Последно активен:</strong> {{ current_user.last_login }}</p>
+                </div>
+            </div>
+
+            <div class="profile-action-buttons">
+                <a href="{% url 'edit-profile-page' %}" class="profile-btn-edit">Редактирай профила</a>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+{% endblock %}

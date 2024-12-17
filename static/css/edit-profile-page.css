@@ -1,0 +1,92 @@
+/* Reset стилове */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Уверява се, че padding не увеличава размера */
+}
+
+/* Основни стилове */
+body.edit-profile-page {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.edit-profile-main {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Скрива всичко извън контейнера */
+}
+
+.edit-profile-title {
+    font-size: 1.8em;
+    color: #3a7a7b;
+    margin-bottom: 20px;
+}
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center; /* Центрира елементите хоризонтално */
+    width: 100%;
+}
+
+.edit-profile-field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+}
+
+.edit-profile-label {
+    margin-bottom: 5px; /* Намалява разстоянието между лейбъла и полето */
+    font-weight: bold;
+    color: #555;
+}
+
+.edit-profile-field input,
+.edit-profile-field select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+    margin-top: 0; /* Премахва излишния margin-top */
+}
+
+.edit-profile-field input:focus,
+.edit-profile-field select:focus {
+    border-color: #3a7a7b;
+    outline: none;
+    box-shadow: 0 0 5px rgba(58, 122, 123, 0.5);
+}
+
+.edit-profile-error {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.btn-save-profile {
+    margin: 40px auto; /* Центрира бутона хоризонтално */
+    padding: 10px 20px;
+    font-size: 1.1em;
+    color: #fff;
+    background-color: #3a7a7b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save-profile:hover {
+    background-color: #285c5d;
+}

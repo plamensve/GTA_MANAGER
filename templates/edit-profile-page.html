@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body class="edit-profile-page">
+    {% include 'nav.html' %}
+
+    <main class="edit-profile-main">
+        <h1 class="edit-profile-title">Редакция на профил</h1>
+        <form method="POST" class="edit-profile-form">
+            {% csrf_token %}
+            <div class="edit-profile-field-wrapper">
+                {% for field in form %}
+                    <div class="edit-profile-field">
+                        <label class="edit-profile-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="edit-profile-error">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn-save-profile">Запази промените</button>
+        </form>
+    </main>
+
+    {% include 'footer.html' %}
+</body>
+{% endblock %}

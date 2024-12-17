@@ -6,7 +6,9 @@ from .views import IndexView
 
 urlpatterns = (
     path('', IndexView.as_view(), name='index'),
+    path('profile-page/', views.profile_page, name='profile-page'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('account/', views.front_page, name='front-page'),
+    path('front-page/', views.front_page, name='front-page'),
     path('account/add-vehicle/', views.add_vehicle, name='add-vehicle'),
+    path('edit-profile-page/', views.edit_profile_page, name='edit-profile-page'),
 )
