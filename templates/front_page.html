@@ -30,13 +30,18 @@
                 </thead>
                 <tbody class="vehicle-table-body">
                 {% for vehicle in all_vehicles %}
-                    <tr class="vehicle-table-row">
+                    <tr class="vehicle-table-row" onclick="window.location.href='{% url 'vehicle_details' vehicle.pk %}'"
+                        style="cursor: pointer;">
                         <td class="vehicle-table-data">{{ forloop.counter }}</td>
                         <td class="vehicle-table-data">{{ vehicle.type|upper }}</td>
                         <td class="vehicle-table-data">{{ vehicle.brand|upper }}</td>
                         <td class="vehicle-table-data">{{ vehicle.model|upper }}</td>
                         <td class="vehicle-table-data">{{ vehicle.register_number|upper }}</td>
+                        {% if vehicle.condition == 'АКТИВЕН' %}
                         <td class="vehicle-table-data status-active">{{ vehicle.condition|upper }}</td>
+                        {% else %}
+                        <td class="vehicle-table-data status-inactive">{{ vehicle.condition|upper }}</td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>

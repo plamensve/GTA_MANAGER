@@ -5,6 +5,7 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, VehicleCreateForm, CustomUserChangeForm
+from .models import Vehicles
 from .utils import get_all_vehicles
 
 
@@ -59,9 +60,10 @@ def front_page(request):
     all_vehicles = get_all_vehicles()
     current_user = request.user
 
+
     contex = {
         'all_vehicles': all_vehicles,
-        'current_user': current_user
+        'current_user': current_user,
     }
 
     return render(request, 'front_page.html', contex)
@@ -112,3 +114,20 @@ def add_vehicle(request):
         'form_vehicle': form_vehicle
     }
     return render(request, 'vehicles/add-vehicles.html', context)
+
+
+@login_required(login_url='index')
+def vehicle_details(request, pk):
+    try:
+        current_vehicle = Vehicles.objects.get(pk=pk)
+    except Vehicles.DoesNotExist:
+        return render(request, '404.html', status=404)
+
+    condition_class = 'status-active' if current_vehicle.condition == 'АКТИВЕН' else 'status-inactive'
+
+    context = {
+        'current_vehicle': current_vehicle,
+        'condition_class': condition_class,
+    }
+
+    return render(request, 'vehicles/vehicle-details.html', context)

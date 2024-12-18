@@ -71,7 +71,7 @@ class VehicleCreateForm(forms.ModelForm):
             'brand': forms.TextInput(attrs={'placeholder': 'Марка на превозното средство'}),
             'model': forms.TextInput(attrs={'placeholder': 'Модел на превозното средство'}),
             'register_number': forms.TextInput(attrs={'placeholder': 'Регистрационен номер'}),
-            'condition': forms.Textarea(attrs={'placeholder': 'Състояние на превозното средство'}),
+            'condition': forms.Select(attrs={'placeholder': 'Състояние'}),
         }
 
 

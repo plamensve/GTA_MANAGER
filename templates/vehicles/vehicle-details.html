@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'nav.html' %}
+    
+    <section class="vehicle-detail-section">
+        <h1 class="vehicle-detail-title">Досие на превозното средство</h1>
+        <div class="vehicle-detail-card">
+            <div class="vehicle-detail-row">
+                <span class="vehicle-detail-label">Тип:</span>
+                <span class="vehicle-detail-value">{{ current_vehicle.type|upper }}</span>
+            </div>
+            <div class="vehicle-detail-row">
+                <span class="vehicle-detail-label">Марка:</span>
+                <span class="vehicle-detail-value">{{ current_vehicle.brand|upper }}</span>
+            </div>
+            <div class="vehicle-detail-row">
+                <span class="vehicle-detail-label">Модел:</span>
+                <span class="vehicle-detail-value">{{ current_vehicle.model|upper }}</span>
+            </div>
+            <div class="vehicle-detail-row">
+                <span class="vehicle-detail-label">Регистрационен номер:</span>
+                <span class="vehicle-detail-value">{{ current_vehicle.register_number|upper }}</span>
+            </div>
+            <div class="vehicle-detail-row">
+                <span class="vehicle-detail-label">Състояние:</span>
+                <span class="vehicle-detail-value {{ condition_class }}">
+                {{ current_vehicle.condition|upper }}
+                </span>
+            </div>
+        </div>
+        <div class="vehicle-detail-actions">
+            <a href="#" class="button edit-button">Редактиране</a>
+            <a href="#" class="button back-button">Назад към списъка</a>
+        </div>
+    </section>
+{% endblock %}

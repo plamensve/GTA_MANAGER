@@ -38,6 +38,11 @@ class Vehicles(models.Model):
         ('АВТОМОБИЛ', 'АВТОМОБИЛ'),
     ]
 
+    CONDITION_CHOICES = [
+        ('АКТИВЕН', 'АКТИВЕН'),
+        ('В РЕМОНТ', 'В РЕМОНТ'),
+    ]
+
     type = models.CharField(
         choices=TYPE_CHOICES,
         default='АВТОМОБИЛ'
@@ -52,14 +57,14 @@ class Vehicles(models.Model):
     )
 
     register_number = models.CharField(
+        max_length=REGISTER_NUMBER_MAX_LENGTH,
         validators=[
             MinLengthValidator(REGISTER_NUMBER_MIN_LENGTH),
-            MaxLengthValidator(REGISTER_NUMBER_MAX_LENGTH)
         ]
     )
 
-    condition = models.TextField(
-        validators=[
-            MaxLengthValidator(CONDITION_MAX_LENGTH)
-        ]
+    condition = models.CharField(
+        max_length=CONDITION_MAX_LENGTH,
+        choices=CONDITION_CHOICES,
+        default='АКТИВЕН'
     )
