@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm, CustomAuthenticationForm, VehicleCreateForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm, VehicleCreateForm, CustomUserChangeForm, \
+    VehicleFullDetailsCreateForm
 from .models import Vehicles
 from .utils import get_all_vehicles
 
@@ -59,7 +60,6 @@ class IndexView(TemplateView):
 def front_page(request):
     all_vehicles = get_all_vehicles()
     current_user = request.user
-
 
     contex = {
         'all_vehicles': all_vehicles,
@@ -131,3 +131,24 @@ def vehicle_details(request, pk):
     }
 
     return render(request, 'vehicles/vehicle-details.html', context)
+
+
+@login_required(login_url='index')
+def add_full_information(request, pk):
+    vehicle = get_object_or_404(Vehicles, pk=pk)
+
+    if request.method == 'POST':
+        form = VehicleFullDetailsCreateForm(request.POST)
+        if form.is_valid():
+            vehicle_full_details = form.save(commit=False)
+            vehicle_full_details.vehicle = vehicle
+            vehicle_full_details.save()
+            return redirect('front-page')
+    else:
+        form = VehicleFullDetailsCreateForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'vehicles/add-full-information.html', context)

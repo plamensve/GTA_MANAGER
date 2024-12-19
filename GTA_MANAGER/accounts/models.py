@@ -43,6 +43,11 @@ class Vehicles(models.Model):
         ('В РЕМОНТ', 'В РЕМОНТ'),
     ]
 
+    ADR_CHOICES = [
+        ('Да', 'Да'),
+        ('Не', 'Не')
+    ]
+
     type = models.CharField(
         choices=TYPE_CHOICES,
         default='АВТОМОБИЛ'
@@ -68,3 +73,178 @@ class Vehicles(models.Model):
         choices=CONDITION_CHOICES,
         default='АКТИВЕН'
     )
+
+    adr = models.CharField(
+        choices=ADR_CHOICES,
+        default='Да'
+    )
+
+
+class VehicleFullDetails(models.Model):
+    DETAILS_CHOICE = [
+        ('Да', 'Да'),
+        ('Не', 'Не')
+    ]
+
+    wheel_chock = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Нe'
+    )
+
+    two_warning_signs = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    eye_wash_liquid = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    reflective_vest = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    portable_lighting_fixture = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    a_pair_of_protective_gloves = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    eye_protection = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    mask = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    shovel = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    manhole_cover = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    collection_container = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    written_instructions_colored = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    fire_extinguishers = models.CharField(
+        choices=DETAILS_CHOICE,
+        default='Не'
+    )
+
+    insurance_civil_liability = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    insurance_casco_validity = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    tachograph_validity = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    adr_validity = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    fitness_protocol_validity = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    technical_check_validity = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    vehicle = models.ForeignKey(
+        Vehicles,
+        on_delete=models.CASCADE,
+        related_name='full_details',
+        null=True,
+        blank=True
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

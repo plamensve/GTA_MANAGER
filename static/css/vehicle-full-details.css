@@ -1,0 +1,172 @@
+/* Основни стилове */
+.vehicle-details-page {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Заглавие на страницата */
+.vehicle-details-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.vehicle-details-title {
+    font-size: 1.8em;
+    color: #3a7a7b;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Контейнер за секции */
+.vehicle-details-sections-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Секции (Choices и Дати) */
+.vehicle-details-choices-section,
+.vehicle-details-dates-section {
+    flex: 1 1 40%;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 350px; /* Добави минимална височина */
+}
+
+
+.vehicle-details-choices-section {
+    min-height: 350px;
+}
+
+/* Заглавия на секциите */
+.choices-section-title,
+.dates-section-title {
+    font-size: 1.5em;
+    color: #3a7a7b;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Грид за Choices */
+.vehicle-details-choices-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+/* Грид за Дати */
+.vehicle-details-dates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+/* Полета */
+.vehicle-details-grid-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.vehicle-details-grid-item label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+.vehicle-details-grid-item select,
+.vehicle-details-grid-item input {
+    padding: 8px;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fdfdfd;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.vehicle-details-grid-item select:focus,
+.vehicle-details-grid-item input:focus {
+    border-color: #3a7a7b;
+    outline: none;
+    background-color: #f7faff;
+}
+
+/* Иконка за календара */
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon input {
+    padding-right: 40px;
+}
+
+.input-with-icon .fa-calendar {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+}
+
+/* Бутон */
+.vehicle-details-actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.vehicle-details-btn-submit {
+    background-color: #3a7a7b;
+    color: #fff;
+    padding: 12px 30px; /* Увеличаване на страничното разстояние за по-голяма дължина */
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+    font-weight: bold;
+    width: 100%; /* Заема цялата ширина на родителския елемент */
+}
+
+
+.vehicle-details-btn-submit:hover {
+    background-color: #2e6062;
+    transform: scale(1.02);
+}
+
+/* Респонсив дизайн */
+@media (max-width: 992px) {
+    .vehicle-details-sections-container {
+        flex-direction: column;
+    }
+
+    .vehicle-details-choices-section,
+    .vehicle-details-dates-section {
+        flex: 1 1 100%;
+    }
+
+    .vehicle-details-choices-grid,
+    .vehicle-details-dates-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vehicle-details-btn-submit {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .vehicle-details-btn-submit {
+        width: 100%;
+    }
+}

@@ -12,4 +12,5 @@ urlpatterns = (
     path('account/add-vehicle/', views.add_vehicle, name='add-vehicle'),
     path('edit-profile-page/', views.edit_profile_page, name='edit-profile-page'),
     path('vehicles/<int:pk>/', views.vehicle_details, name='vehicle_details'),
+    path('vehicles/<int:pk>/add-full-information', views.add_full_information, name='add-full-information'),
 )

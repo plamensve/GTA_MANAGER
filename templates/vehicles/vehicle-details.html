@@ -29,8 +29,8 @@
             </div>
         </div>
         <div class="vehicle-detail-actions">
-            <a href="#" class="button edit-button">Редактиране</a>
-            <a href="#" class="button back-button">Назад към списъка</a>
+            <a href="{% url 'add-full-information' current_vehicle.pk %}" class="button edit-button">Добави пълна информация</a>
+            <a href="#" class="button back-button">Редактиране</a>
         </div>
     </section>
 {% endblock %}

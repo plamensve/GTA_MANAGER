@@ -7,19 +7,22 @@
         <h1>Форма за регистрация в системата</h1><br><br>
         {% csrf_token %}
         <div class="form-group">
-            {{ form_vehicle.type }}
+            <strong>Tип:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  </strong>{{ form_vehicle.type }}
         </div>
         <div class="form-group">
-            {{ form_vehicle.brand }}
+            <strong>Марка:&nbsp&nbsp&nbsp&nbsp&nbsp</strong>{{ form_vehicle.brand }}
         </div>
         <div class="form-group">
-            {{ form_vehicle.model }}
+            <strong>Модел:&nbsp&nbsp&nbsp&nbsp</strong>{{ form_vehicle.model }}
         </div>
         <div class="form-group">
-            {{ form_vehicle.register_number }}
+            <strong>Рег. Nº:&nbsp&nbsp&nbsp&nbsp&nbsp</strong>{{ form_vehicle.register_number }}
         </div>
         <div class="form-group">
-            {{ form_vehicle.condition }}
+            <strong>Статус:&nbsp&nbsp&nbsp&nbsp</strong>{{ form_vehicle.condition }}
+        </div>
+        <div class="form-group">
+            <strong>АДР:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</strong>{{ form_vehicle.adr }}
         </div>
         <button type="submit" class="btn-submit">Регистрирай превозното средство</button>
     </form>

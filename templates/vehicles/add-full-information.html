@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    {% include 'nav.html' %}
+    <div class="vehicle-details-page">
+        <div class="vehicle-details-header">
+            <h2 class="vehicle-details-title">Пълна информация - Автомобил / Влекач / Цистерна</h2>
+        </div>
+        <div class="vehicle-details-form-wrapper">
+            <form method="post" class="vehicle-details-form" novalidate>
+                {% csrf_token %}
+
+                <!-- Контейнер за секции -->
+                <div class="vehicle-details-sections-container">
+                    <!-- Секция с полетата Choices -->
+                    <div class="vehicle-details-choices-section larger-section">
+                        <h3 class="choices-section-title">АДР Оборудване</h3>
+                        <div class="vehicle-details-choices-grid">
+                            <div class="vehicle-details-grid-item">
+                                {{ form.wheel_chock.label_tag }}
+                                {{ form.wheel_chock }}
+                                {% if form.wheel_chock.errors %}
+                                    <div class="vehicle-details-error">{{ form.wheel_chock.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.two_warning_signs.label_tag }}
+                                {{ form.two_warning_signs }}
+                                {% if form.two_warning_signs.errors %}
+                                    <div class="vehicle-details-error">{{ form.two_warning_signs.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.eye_wash_liquid.label_tag }}
+                                {{ form.eye_wash_liquid }}
+                                {% if form.eye_wash_liquid.errors %}
+                                    <div class="vehicle-details-error">{{ form.eye_wash_liquid.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.reflective_vest.label_tag }}
+                                {{ form.reflective_vest }}
+                                {% if form.reflective_vest.errors %}
+                                    <div class="vehicle-details-error">{{ form.reflective_vest.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.portable_lighting_fixture.label_tag }}
+                                {{ form.portable_lighting_fixture }}
+                                {% if form.portable_lighting_fixture.errors %}
+                                    <div class="vehicle-details-error">{{ form.portable_lighting_fixture.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.a_pair_of_protective_gloves.label_tag }}
+                                {{ form.a_pair_of_protective_gloves }}
+                                {% if form.a_pair_of_protective_gloves.errors %}
+                                    <div class="vehicle-details-error">{{ form.a_pair_of_protective_gloves.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.eye_protection.label_tag }}
+                                {{ form.eye_protection }}
+                                {% if form.eye_protection.errors %}
+                                    <div class="vehicle-details-error">{{ form.eye_protection.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.mask.label_tag }}
+                                {{ form.mask }}
+                                {% if form.mask.errors %}
+                                    <div class="vehicle-details-error">{{ form.mask.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.shovel.label_tag }}
+                                {{ form.shovel }}
+                                {% if form.shovel.errors %}
+                                    <div class="vehicle-details-error">{{ form.shovel.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.manhole_cover.label_tag }}
+                                {{ form.manhole_cover }}
+                                {% if form.manhole_cover.errors %}
+                                    <div class="vehicle-details-error">{{ form.manhole_cover.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.collection_container.label_tag }}
+                                {{ form.collection_container }}
+                                {% if form.collection_container.errors %}
+                                    <div class="vehicle-details-error">{{ form.collection_container.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.written_instructions_colored.label_tag }}
+                                {{ form.written_instructions_colored }}
+                                {% if form.written_instructions_colored.errors %}
+                                    <div class="vehicle-details-error">{{ form.written_instructions_colored.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.fire_extinguishers.label_tag }}
+                                {{ form.fire_extinguishers }}
+                                {% if form.fire_extinguishers.errors %}
+                                    <div class="vehicle-details-error">{{ form.fire_extinguishers.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Секция с полетата Дати -->
+                    <div class="vehicle-details-dates-section">
+                        <h3 class="dates-section-title">Валидност на документите</h3>
+                        <div class="vehicle-details-dates-grid">
+                            <div class="vehicle-details-grid-item">
+                                {{ form.insurance_civil_liability.label_tag }}
+                                <div class="input-with-icon">
+                                    {{ form.insurance_civil_liability }}
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                {% if form.insurance_civil_liability.errors %}
+                                    <div class="vehicle-details-error">{{ form.insurance_civil_liability.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.insurance_casco_validity.label_tag }}
+                                <div class="input-with-icon">
+                                    {{ form.insurance_casco_validity }}
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                {% if form.insurance_casco_validity.errors %}
+                                    <div class="vehicle-details-error">{{ form.insurance_casco_validity.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.tachograph_validity.label_tag }}
+                                <div class="input-with-icon">
+                                    {{ form.tachograph_validity }}
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                {% if form.tachograph_validity.errors %}
+                                    <div class="vehicle-details-error">{{ form.tachograph_validity.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.adr_validity.label_tag }}
+                                <div class="input-with-icon">
+                                    {{ form.adr_validity }}
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                {% if form.adr_validity.errors %}
+                                    <div class="vehicle-details-error">{{ form.adr_validity.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.fitness_protocol_validity.label_tag }}
+                                <div class="input-with-icon">
+                                    {{ form.fitness_protocol_validity }}
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                {% if form.fitness_protocol_validity.errors %}
+                                    <div class="vehicle-details-error">{{ form.fitness_protocol_validity.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="vehicle-details-grid-item">
+                                {{ form.technical_check_validity.label_tag }}
+                                <div class="input-with-icon">
+                                    {{ form.technical_check_validity }}
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                {% if form.technical_check_validity.errors %}
+                                    <div class="vehicle-details-error">{{ form.technical_check_validity.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Бутон за изпращане -->
+                <div class="vehicle-details-actions">
+                    <button type="submit" class="vehicle-details-btn-submit">Запази</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</body>
+<script src="{% static 'js/calendar.js' %}"></script>
+{% endblock %}
