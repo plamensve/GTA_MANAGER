@@ -194,6 +194,29 @@ body.profile-page {
     margin: 0;
 }
 
+
+/* Промяна на цвета при hover за целия ред */
+.vehicle-table-row:hover {
+    background-color: #f2f2f2; /* Лек сив фон при ховър */
+    cursor: pointer;
+}
+
+.vehicle-table-data:hover{
+    background-color: #f2f2f2; /* ��ек сив фон при ховър */
+    cursor: pointer;
+}
+
+/* Промяна на цвета на статуса при hover */
+.vehicle-table-row:hover .status-active {
+    background-color: #b3e0b3; /* Светлозелен за активни превозни средства */
+}
+
+.vehicle-table-row:hover .status-inactive {
+    background-color: #f2d1d1; /* Светлочервено за неактивни превозни средства */
+}
+
+
+
 /* Респонсив дизайн */
 @media (max-width: 992px) {
     .profile-header-section {

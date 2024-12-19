@@ -7,7 +7,7 @@ from django.contrib.auth import login
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, VehicleCreateForm, CustomUserChangeForm, \
     VehicleFullDetailsCreateForm
 from .models import Vehicles
-from .utils import get_all_vehicles
+from .utils import get_all_vehicles, vehicle_full_details_info
 
 
 class IndexView(TemplateView):
@@ -118,6 +118,8 @@ def add_vehicle(request):
 
 @login_required(login_url='index')
 def vehicle_details(request, pk):
+    vehicle_details = vehicle_full_details_info(pk)
+
     try:
         current_vehicle = Vehicles.objects.get(pk=pk)
     except Vehicles.DoesNotExist:
@@ -128,6 +130,7 @@ def vehicle_details(request, pk):
     context = {
         'current_vehicle': current_vehicle,
         'condition_class': condition_class,
+        'vehicle_details': vehicle_details,
     }
 
     return render(request, 'vehicles/vehicle-details.html', context)

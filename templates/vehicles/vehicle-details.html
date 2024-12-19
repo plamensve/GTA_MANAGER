@@ -1,36 +1,148 @@
 {% extends 'base.html' %}
+
 {% block content %}
     {% include 'nav.html' %}
-    
-    <section class="vehicle-detail-section">
-        <h1 class="vehicle-detail-title">Досие на превозното средство</h1>
-        <div class="vehicle-detail-card">
-            <div class="vehicle-detail-row">
-                <span class="vehicle-detail-label">Тип:</span>
-                <span class="vehicle-detail-value">{{ current_vehicle.type|upper }}</span>
+
+    <div class="vehicle-page-layout-vhl">
+        <!-- Лява секция: Основна информация -->
+        <section class="vehicle-detail-section-vhl vehicle-left-section-vhl vehicle-page-left-vhl">
+            <h1 class="vehicle-detail-title-vhl vehicle-page-title-vhl">МПС Досие</h1>
+            <table class="vehicle-details-table-vhl vehicle-page-table-vhl">
+                <thead>
+                <tr class="vehicle-details-header-row-vhl vehicle-page-header-row-vhl">
+                    <th class="vehicle-details-header-vhl vehicle-page-header-vhl">Поле</th>
+                    <th class="vehicle-details-header-vhl vehicle-page-header-vhl">Стойност</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Тип:</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ current_vehicle.type|upper }}</td>
+                </tr>
+                <tr>
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Марка:</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ current_vehicle.brand|upper }}</td>
+                </tr>
+                <tr>
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Модел:</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ current_vehicle.model|upper }}</td>
+                </tr>
+                <tr>
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Регистрационен номер:</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ current_vehicle.register_number|upper }}</td>
+                </tr>
+                <tr>
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Състояние:</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl {{ condition_class }}">
+                        {{ current_vehicle.condition|upper }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="vehicle-detail-actions-vhl vehicle-page-actions-vhl">
+                <a href="{% url 'add-full-information' current_vehicle.pk %}"
+                   class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Добави пълна информация</a>
             </div>
-            <div class="vehicle-detail-row">
-                <span class="vehicle-detail-label">Марка:</span>
-                <span class="vehicle-detail-value">{{ current_vehicle.brand|upper }}</span>
-            </div>
-            <div class="vehicle-detail-row">
-                <span class="vehicle-detail-label">Модел:</span>
-                <span class="vehicle-detail-value">{{ current_vehicle.model|upper }}</span>
-            </div>
-            <div class="vehicle-detail-row">
-                <span class="vehicle-detail-label">Регистрационен номер:</span>
-                <span class="vehicle-detail-value">{{ current_vehicle.register_number|upper }}</span>
-            </div>
-            <div class="vehicle-detail-row">
-                <span class="vehicle-detail-label">Състояние:</span>
-                <span class="vehicle-detail-value {{ condition_class }}">
-                {{ current_vehicle.condition|upper }}
-                </span>
-            </div>
-        </div>
-        <div class="vehicle-detail-actions">
-            <a href="{% url 'add-full-information' current_vehicle.pk %}" class="button edit-button">Добави пълна информация</a>
-            <a href="#" class="button back-button">Редактиране</a>
-        </div>
-    </section>
+        </section>
+
+        <!-- Дясна секция: Информация за превозното средство -->
+        <section class="vehicle-detail-section-vhl vehicle-right-section-vhl vehicle-page-right-vhl">
+            <h1 class="vehicle-page-info-title-vhl">Информация за превозното средство</h1>
+            <table class="vehicle-details-table-vhl vehicle-page-table-vhl">
+                <thead>
+                <tr class="vehicle-details-header-row-vhl vehicle-page-header-row-vhl">
+                    <th class="vehicle-details-header-vhl vehicle-page-header-vhl">Поле</th>
+                    <th class="vehicle-details-header-vhl vehicle-page-header-vhl">Стойност</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Дата на валидност на застраховка
+                        Гражданска отговорност
+                    </td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.insurance_civil_liability|date:"d/m/Y" }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Дата на валидност на застраховка
+                        Каско
+                    </td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.insurance_casco_validity|date:"d/m/Y" }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Дата на валидност на тахограф</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.tachograph_validity|date:"d/m/Y" }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Дата на валидност на ADR</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.adr_validity|date:"d/m/Y" }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Дата на валидност на протокол за
+                        годност
+                    </td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.fitness_protocol_validity|date:"d/m/Y" }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Дата на валидност на технически
+                        преглед
+                    </td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.technical_check_validity|date:"d/m/Y" }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Колесни опори</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.wheel_chock }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Два предупредителни знака</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.two_warning_signs }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Течност за измиване на очи</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.eye_wash_liquid }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Отразителен жилет</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.reflective_vest }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Преносима осветителна инсталация</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.portable_lighting_fixture }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Пара защитни ръкавици</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.a_pair_of_protective_gloves }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Оборудване за защита на очите</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.eye_protection }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Маска</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.mask }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Лопата</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.shovel }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Капак на шахта</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.manhole_cover }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Контейнер за събиране</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.collection_container }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Писмени инструкции в цвят</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.written_instructions_colored }}</td>
+                </tr>
+                <tr class="vehicle-details-row-vhl vehicle-page-details-row-vhl">
+                    <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Пожарогасители</td>
+                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl">{{ vehicle_details.fire_extinguishers }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
 {% endblock %}
