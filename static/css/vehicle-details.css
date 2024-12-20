@@ -7,7 +7,7 @@ body {
 }
 
 .vehicle-detail-section-vhl{
-    margin-top: 25px
+    margin-top: 15px
 }
 .vehicle-detail-card-vhl{
     margin-top: 60px;
@@ -19,8 +19,9 @@ body {
 
 .vehicle-page-title-vhl,
 .vehicle-page-info-title-vhl{
-  margin: 1em 0;
-  color: #333; /* Тъмно сив цвят за заглавията */
+    color: #333; /* Тъмно сив цвят за заглавията */
+    margin: 10px 0 5px;
+
 }
 
 .vehicle-page-layout-vhl {
@@ -79,7 +80,7 @@ body {
   background-color: #3a7a7b; /* Зелен цвят за бутоните */
   border: none;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;

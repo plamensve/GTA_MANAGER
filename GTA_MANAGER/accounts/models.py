@@ -65,7 +65,8 @@ class Vehicles(models.Model):
         max_length=REGISTER_NUMBER_MAX_LENGTH,
         validators=[
             MinLengthValidator(REGISTER_NUMBER_MIN_LENGTH),
-        ]
+        ],
+        unique=True,
     )
 
     condition = models.CharField(

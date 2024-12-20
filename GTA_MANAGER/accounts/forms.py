@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 
 from GTA_MANAGER.accounts.models import Vehicles, CustomUser, VehicleFullDetails
 
@@ -44,7 +45,7 @@ class CustomUserChangeForm(UserChangeForm):
             'username': 'Потребителско име',
             'first_name': 'Име',
             'last_name': 'Фамилия',
-            'email': 'Имейл',
+            'email': 'E-mail',
         }
 
     def __init__(self, *args, **kwargs):
@@ -74,6 +75,14 @@ class VehicleCreateForm(forms.ModelForm):
             'condition': forms.Select(attrs={'placeholder': 'Състояние'}),
             'adr': forms.Select(attrs={'placeholder': 'ADR'})
         }
+
+    def clean_register_number(self):
+        register_number = self.cleaned_data.get('register_number')
+
+        if Vehicles.objects.filter(register_number=register_number).exists():
+            raise ValidationError('Превозно средство с този регистрационен номер вече съществува.')
+
+        return register_number
 
 
 class VehicleFullDetailsCreateForm(forms.ModelForm):

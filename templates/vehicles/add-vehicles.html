@@ -17,6 +17,13 @@
         </div>
         <div class="form-group">
             <strong>Рег. Nº:&nbsp&nbsp&nbsp&nbsp&nbsp</strong>{{ form_vehicle.register_number }}
+            {% if form_vehicle.register_number.errors %}
+                <ul>
+                    {% for error in form_vehicle.register_number.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
         <div class="form-group">
             <strong>Статус:&nbsp&nbsp&nbsp&nbsp</strong>{{ form_vehicle.condition }}
@@ -26,7 +33,7 @@
         </div>
         <button type="submit" class="btn-submit">Регистрирай превозното средство</button>
     </form>
-    
+
 
     {% include 'footer.html' %}
     </body>
