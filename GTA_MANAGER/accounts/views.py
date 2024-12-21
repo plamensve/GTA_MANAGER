@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -8,6 +9,8 @@ from .forms import CustomUserCreationForm, CustomAuthenticationForm, VehicleCrea
     VehicleFullDetailsCreateForm
 from .models import Vehicles
 from .utils import get_all_vehicles, vehicle_full_details_info
+from openpyxl import Workbook
+
 
 
 class IndexView(TemplateView):
@@ -155,3 +158,34 @@ def add_full_information(request, pk):
     }
 
     return render(request, 'vehicles/add-full-information.html', context)
+
+
+@login_required(login_url='index')
+def generate_vehicle_report(request):
+    # Създаване на Excel файл
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Служебни превозни средства"
+
+    # Добавяне на заглавия
+    headers = ["№", "Тип", "Марка", "Модел", "Рег. номер", "Състояние"]
+    ws.append(headers)
+
+    all_vehicles = Vehicles.objects.all()
+    for idx, vehicle in enumerate(all_vehicles, start=1):
+        ws.append([
+            idx,
+            vehicle.type.upper(),
+            vehicle.brand.upper(),
+            vehicle.model.upper(),
+            vehicle.register_number.upper(),
+            vehicle.condition.upper()
+        ])
+
+    # Настройки за отговор
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename="vehicle_report.xlsx"'
+
+    # Запазване на Excel файла в отговора
+    wb.save(response)
+    return response

@@ -1,9 +1,13 @@
+{% load static %}
 <nav class="navbar">
     <div class="navbar-logo">GTA Manager</div>
+    <button class="navbar-toggle" aria-label="Toggle navigation">
+        ☰
+    </button>
     <ul class="navbar-menu">
-        <li class="navbar-item"><a href="{% url 'front-page' %}" class="navbar-link">Табло</a></li>
-        <li class="navbar-item"><a href="#" class="navbar-link">Автомобили</a></li>
-        <li class="navbar-item"><a href="#" class="navbar-link">Камиони</a></li>
+        <li class="navbar-item"><a href="{% url 'front-page' %}" class="navbar-link">Авто Парк</a></li>
+        <li class="navbar-item"><a href="#" class="navbar-link">Светли Горива</a></li>
+        <li class="navbar-item"><a href="#" class="navbar-link">Битум</a></li>
         <li class="navbar-item"><a href="{% url 'profile-page' %}" class="navbar-link">Профил</a></li>
         <li class="navbar-item">
             <form method="POST" action="{% url 'logout' %}" class="navbar-link-form">
@@ -12,4 +16,5 @@
             </form>
         </li>
     </ul>
+    <script src="{% static 'js/navigationMobile.js' %}"></script>
 </nav>

@@ -33,9 +33,17 @@
                 </tr>
                 <tr>
                     <td class="vehicle-details-label-vhl vehicle-page-label-vhl">Състояние:</td>
-                    <td class="vehicle-details-data-vhl vehicle-page-data-vhl {{ condition_class }}">
-                        {{ current_vehicle.condition|upper }}
-                    </td>
+                    {% if current_vehicle.condition == 'АКТИВЕН' %}
+                        <td class="vehicle-details-data-vhl vehicle-page-data-vhl {{ condition_class }}"
+                            style="color: green">
+                            {{ current_vehicle.condition|upper }}
+                        </td>
+                    {% else %}
+                        <td class="vehicle-details-data-vhl vehicle-page-data-vhl {{ condition_class }}"
+                            style="color: red">
+                            {{ current_vehicle.condition|upper }}
+                        </td>
+                    {% endif %}
                 </tr>
                 </tbody>
             </table>
