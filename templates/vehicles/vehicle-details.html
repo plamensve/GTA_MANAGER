@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     {% include 'nav.html' %}
@@ -50,7 +51,18 @@
 
             <div class="vehicle-detail-actions-vhl vehicle-page-actions-vhl">
                 <a href="{% url 'add-full-information' current_vehicle.pk %}"
-                   class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Добави пълна информация</a>
+                   class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Добави информация
+                    <i class="fas fa-plus-circle"></i></a>
+            </div>
+            <div class="vehicle-detail-actions-vhl vehicle-page-actions-vhl">
+                <a href="{% url 'edit-information' current_vehicle.pk %}"
+                   class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Редактирай
+                    <i class="fas fa-edit"></i></a>
+            </div>
+            <div class="vehicle-detail-actions-vhl vehicle-page-actions-vhl">
+                <a href="{% url 'delete-information' current_vehicle.pk %}"
+                   class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Изтриване
+                    <i class="fas fa-trash"></i></a>
             </div>
         </section>
 

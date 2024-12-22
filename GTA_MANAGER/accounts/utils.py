@@ -9,7 +9,7 @@ def get_all_vehicles():
 
 def vehicle_full_details_info(pk):
     try:
-        vehicle_details = VehicleFullDetails.objects.get(vehicle=pk)
+        vehicle_details = VehicleFullDetails.objects.filter(vehicle=pk).last()
     except VehicleFullDetails.DoesNotExist:
         vehicle_details = None
 

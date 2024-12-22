@@ -1,16 +1,17 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from django.contrib.auth import login
+from openpyxl.styles import Font, Alignment, Border, Side
+
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, VehicleCreateForm, CustomUserChangeForm, \
-    VehicleFullDetailsCreateForm
+    VehicleFullDetailsCreateForm, VehicleEditForm
 from .models import Vehicles
 from .utils import get_all_vehicles, vehicle_full_details_info
 from openpyxl import Workbook
-
 
 
 class IndexView(TemplateView):
@@ -149,7 +150,7 @@ def add_full_information(request, pk):
             vehicle_full_details = form.save(commit=False)
             vehicle_full_details.vehicle = vehicle
             vehicle_full_details.save()
-            return redirect('front-page')
+            return redirect('vehicle_details', pk=pk)
     else:
         form = VehicleFullDetailsCreateForm()
 
@@ -161,26 +162,95 @@ def add_full_information(request, pk):
 
 
 @login_required(login_url='index')
+def edit_full_information(request, pk):
+    vehicle_full_details = get_object_or_404(Vehicles, pk=pk)
+
+    if request.method == 'POST':
+        form = VehicleEditForm(request.POST, instance=vehicle_full_details)
+        if form.is_valid():
+            form.save()
+            return redirect('vehicle_details', pk=vehicle_full_details.pk)
+        else:
+            form = VehicleEditForm(request.POST, instance=vehicle_full_details)
+    else:
+        form = VehicleEditForm(instance=vehicle_full_details)
+
+    context = {
+        'form': form,
+        'vehicle_full_details': vehicle_full_details,
+    }
+
+    return render(request, 'vehicles/edit-full-information.html', context)
+
+
+@login_required(login_url='index')
+def delete_information(request, pk):
+    vehicle_full_details = get_object_or_404(Vehicles, pk=pk)
+
+    if request.method == 'POST':
+        vehicle_full_details.delete()
+        return redirect('front-page')
+
+    # Ако е GET заявка, покажете страницата за потвърждение
+    return render(request, 'vehicles/delete-information.html', {'vehicle': vehicle_full_details})
+
+
+@login_required(login_url='index')
 def generate_vehicle_report(request):
     # Създаване на Excel файл
     wb = Workbook()
     ws = wb.active
     ws.title = "Служебни превозни средства"
 
+    # Стилове
+    bold_font = Font(bold=True, size=14)
+    center_alignment = Alignment(horizontal='center', vertical='center')
+    border = Border(
+        left=Side(border_style='thin'),
+        right=Side(border_style='thin'),
+        top=Side(border_style='thin'),
+        bottom=Side(border_style='thin')
+    )
+
     # Добавяне на заглавия
+    header_info = 'ДЖИ ТИ ЕЙ ПЕТРОЛИУМ ООД - АВТОМОБИЛИ / ВЛЕКАЧИ / ЦИСТЕРНИ'
+    ws.append([header_info])
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=6)  # Обединяване на клетките
+    header_cell = ws.cell(row=1, column=1)
+    header_cell.font = Font(bold=True, size=16)
+    header_cell.alignment = center_alignment
+
     headers = ["№", "Тип", "Марка", "Модел", "Рег. номер", "Състояние"]
     ws.append(headers)
 
+    for col_num, header in enumerate(headers, start=1):
+        cell = ws.cell(row=2, column=col_num)
+        cell.font = bold_font
+        cell.alignment = center_alignment
+        cell.border = border
+
+    # Добавяне на данни от базата
     all_vehicles = Vehicles.objects.all()
     for idx, vehicle in enumerate(all_vehicles, start=1):
-        ws.append([
+        row = [
             idx,
             vehicle.type.upper(),
             vehicle.brand.upper(),
             vehicle.model.upper(),
             vehicle.register_number.upper(),
             vehicle.condition.upper()
-        ])
+        ]
+        ws.append(row)
+
+        for col_num, value in enumerate(row, start=1):
+            cell = ws.cell(row=idx + 2, column=col_num)
+            cell.alignment = center_alignment
+            cell.border = border
+
+    # Настройки за ширина на колоните
+    column_widths = [10, 20, 25, 25, 30, 20]  # Увеличени ширини
+    for i, width in enumerate(column_widths, start=1):
+        ws.column_dimensions[chr(64 + i)].width = width
 
     # Настройки за отговор
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')

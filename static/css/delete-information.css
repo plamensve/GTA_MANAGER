@@ -1,0 +1,125 @@
+/* Основен контейнер */
+.confirm-delete-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: linear-gradient(to bottom, #3a7a7b, #e8e8e8);
+    padding: 20px;
+}
+
+/* Карта за потвърждение */
+.confirm-delete-card {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Заглавие */
+.confirm-delete-title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #3a7a7b;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Описание */
+.confirm-delete-description {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Акцентен текст */
+.confirm-delete-highlight {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 30px;
+}
+
+.confirm-delete-actions {
+    display: flex;
+    justify-content: flex-start; /* Подравняване вляво */
+    align-items: center;
+    gap: 15px;
+    margin-left: -11px;
+}
+
+
+/* Бутоните */
+.btn-delete,
+.btn-cancel {
+    background-color: #e74c3c;
+    color: #ffffff;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 150px; /* Фиксирана ширина */
+    height: 50px; /* Фиксирана височина */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Индивидуални стилове за бутоните */
+.btn-delete {
+    background-color: #e74c3c; /* Червен за изтриване */
+}
+
+.btn-delete:hover {
+    background-color: #c0392b; /* По-тъмен червен при hover */
+    box-shadow: 0 6px 12px rgba(192, 57, 43, 0.6);
+}
+
+.btn-cancel {
+    background-color: #3498db; /* Син за отказ */
+    text-decoration: none;
+}
+
+.btn-cancel:hover {
+    background-color: #2980b9; /* По-тъмен син при hover */
+    box-shadow: 0 6px 12px rgba(41, 128, 185, 0.6);
+}
+
+/* Респонсивност */
+@media (max-width: 768px) {
+    .confirm-delete-card {
+        padding: 30px 20px;
+    }
+
+    .confirm-delete-title {
+        font-size: 1.8em;
+    }
+
+    .confirm-delete-description {
+        font-size: 1em;
+    }
+
+    .confirm-delete-highlight {
+        font-size: 1.3em;
+    }
+
+    .confirm-delete-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-delete,
+    .btn-cancel {
+        width: 100%;
+        font-size: 1em;
+    }
+}

@@ -14,9 +14,6 @@ body {
 }
 
 
-
-
-
 .vehicle-page-title-vhl,
 .vehicle-page-info-title-vhl{
     color: #333; /* Тъмно сив цвят за заглавията */
@@ -61,7 +58,7 @@ body {
 .vehicle-details-table-vhl {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid #ddd; /* Добавена рамка около таблицата */
+  border: 3px solid #3a7a7b; /* Добавена рамка около таблицата */
 }
 
 .vehicle-details-table-vhl th,
@@ -70,17 +67,17 @@ body {
   border: 1px solid #ddd;
 }
 
+
 .vehicle-details-table-vhl thead th {
   background-color: #3a7a7b; /* Основен цвят за заглавния ред */
   color: #fff; /* Бял цвят за текст в заглавния ред */
 }
 
-/* Buttons styles */
 .button-vhl {
-  background-color: #3a7a7b; /* Зелен цвят за бутоните */
+  background-color: #3a7a7b;
   border: none;
   color: white;
-  padding: 10px 30px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -88,12 +85,44 @@ body {
   margin: 0.5em;
   cursor: pointer;
   border-radius: 5px;
+  width: 250px; /* Фиксирана ширина */
+  text-overflow: ellipsis; /* Ако текстът е прекалено дълъг */
+  overflow: hidden;
+  white-space: nowrap;
 }
+
+
+
 
 .button-vhl:hover {
   background-color: #527b7c; /* По-тъмен зелен при ховър */
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
 
 
 

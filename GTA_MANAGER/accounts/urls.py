@@ -13,5 +13,7 @@ urlpatterns = (
     path('edit-profile-page/', views.edit_profile_page, name='edit-profile-page'),
     path('vehicles/<int:pk>/', views.vehicle_details, name='vehicle_details'),
     path('vehicles/<int:pk>/add-full-information', views.add_full_information, name='add-full-information'),
+    path('vehicles/<int:pk>/edit-information', views.edit_full_information, name='edit-information'),
+    path('vehicles/<int:pk>/delete-information', views.delete_information, name='delete-information'),
     path('generate-report/', views.generate_vehicle_report, name='generate_report'),
 )

@@ -85,6 +85,37 @@ class VehicleCreateForm(forms.ModelForm):
         return register_number
 
 
+class VehicleEditForm(forms.ModelForm):
+    class Meta:
+        model = Vehicles
+        fields = '__all__'
+
+        labels = {
+            'type': '',
+            'brand': '',
+            'model': '',
+            'register_number': '',
+            'condition': '',
+        }
+
+        widgets = {
+            'type': forms.Select(attrs={'placeholder': 'Изберете тип'}),
+            'brand': forms.TextInput(attrs={'placeholder': 'Марка на превозното средство'}),
+            'model': forms.TextInput(attrs={'placeholder': 'Модел на превозното средство'}),
+            'register_number': forms.TextInput(attrs={'placeholder': 'Регистрационен номер'}),
+            'condition': forms.Select(attrs={'placeholder': 'Състояние'}),
+            'adr': forms.Select(attrs={'placeholder': 'ADR'})
+        }
+
+    def clean_register_number(self):
+        register_number = self.cleaned_data.get('register_number')
+
+        if Vehicles.objects.filter(register_number=register_number).exists():
+            raise ValidationError('Превозно средство с този регистрационен номер вече съществува.')
+
+        return register_number
+
+
 class VehicleFullDetailsCreateForm(forms.ModelForm):
     class Meta:
         model = VehicleFullDetails
