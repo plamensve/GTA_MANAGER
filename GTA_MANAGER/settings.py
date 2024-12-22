@@ -153,3 +153,33 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'in-v3.mailjet.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = '91fb50e5f63631145078b48b1f6cb50b'
+EMAIL_HOST_PASSWORD = '7c6f12d021afd54adbc2cc49608454eb'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'svetoslavov.dev@gmail.com'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
