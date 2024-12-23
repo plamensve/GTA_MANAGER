@@ -1,40 +1,170 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <body>
     {% include 'nav.html' %}
 
-    <form method="POST" action="{% url 'edit-information' vehicle_full_details.pk %}" class="vehicle-form">
-        <h1>Форма за редактиране</h1><br><br>
-        {% csrf_token %}
-        <div class="form-group">
-            <strong>Tип:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </strong>{{ form.type }}
-        </div>
-        <div class="form-group">
-            <strong>Марка:&nbsp&nbsp&nbsp&nbsp&nbsp</strong>{{ form.brand }}
-        </div>
-        <div class="form-group">
-            <strong>Модел:&nbsp&nbsp&nbsp&nbsp</strong>{{ form.model }}
-        </div>
-        <div class="form-group">
-            <strong>Рег. Nº:&nbsp&nbsp&nbsp&nbsp&nbsp</strong>{{ form.register_number }}
-            {% if form.register_number.errors %}
-                <ul>
-                    {% for error in form.register_number.errors %}
-                        <li style="color: red;">{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-        <div class="form-group">
-            <strong>Статус:&nbsp&nbsp&nbsp&nbsp</strong>{{ form.condition }}
-        </div>
-        <div class="form-group">
-            <strong>АДР:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</strong>{{ form.adr }}
-        </div>
-        <button type="submit" class="btn-submit">Редактирай превозното средство&nbsp;<i class="fas fa-plus-circle"></i></button>
-    </form>
+    <div class="edit-vehicle-page">
+        <h1 class="edit-vehicle-title">Форма за редактиране</h1>
 
+        <form method="POST" action="{% url 'edit-information' vehicle_full_details.pk %}" class="edit-vehicle-form">
+            {% csrf_token %}
+
+            <div class="tab-container">
+                <ul class="tab-menu">
+                    <li class="tab-item active" data-tab="basic-info">Основна информация</li>
+                    <li class="tab-item" data-tab="additional-info">Допълнителна информация</li>
+                </ul>
+
+                <div class="tab-content">
+                    <!-- Основна информация -->
+                    <div class="tab-panel active" id="basic-info">
+                        <fieldset>
+                            <legend class="section-title">Основна информация за автомобила</legend>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <strong>Тип:</strong> {{ form.type }}
+                                </div>
+                                <div class="form-group">
+                                    <strong>Марка:</strong> {{ form.brand }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <strong>Модел:</strong> {{ form.model }}
+                                </div>
+                                <div class="form-group">
+                                    <strong>Рег. Nº:</strong> {{ form.register_number }}
+                                    {% if form.register_number.errors %}
+                                        <ul>
+                                            {% for error in form.register_number.errors %}
+                                                <li style="color: red;">{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <strong>Статус:</strong> {{ form.condition }}
+                                </div>
+                                <div class="form-group">
+                                    <strong>АДР:</strong> {{ form.adr }}
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Допълнителна информация -->
+                    <div class="tab-panel" id="additional-info">
+                        <fieldset>
+                            <legend class="section-title">Допълнителна информация</legend>
+
+                            <div class="vehicle-details-sections-container-unique">
+                                <!-- Секция за АДР Оборудване -->
+                                <div class="vehicle-details-choices-section-unique">
+                                    <h3 class="choices-section-title-unique">АДР Оборудване</h3>
+                                    <div class="vehicle-details-choices-grid-unique">
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.wheel_chock.label_tag }}
+                                            {{ form_2.wheel_chock }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.two_warning_signs.label_tag }}
+                                            {{ form_2.two_warning_signs }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.eye_wash_liquid.label_tag }}
+                                            {{ form_2.eye_wash_liquid }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.reflective_vest.label_tag }}
+                                            {{ form_2.reflective_vest }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.portable_lighting_fixture.label_tag }}
+                                            {{ form_2.portable_lighting_fixture }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.a_pair_of_protective_gloves.label_tag }}
+                                            {{ form_2.a_pair_of_protective_gloves }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.eye_protection.label_tag }}
+                                            {{ form_2.eye_protection }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.mask.label_tag }}
+                                            {{ form_2.mask }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.shovel.label_tag }}
+                                            {{ form_2.shovel }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.manhole_cover.label_tag }}
+                                            {{ form_2.manhole_cover }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.collection_container.label_tag }}
+                                            {{ form_2.collection_container }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.written_instructions_colored.label_tag }}
+                                            {{ form_2.written_instructions_colored }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.fire_extinguishers.label_tag }}
+                                            {{ form_2.fire_extinguishers }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Секция за Валидност на документите -->
+                                <div class="vehicle-details-dates-section-unique">
+                                    <h3 class="dates-section-title-unique">Валидност на документите</h3>
+                                    <div class="vehicle-details-dates-grid-unique">
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.insurance_civil_liability.label_tag }}
+                                            {{ form_2.insurance_civil_liability }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.insurance_casco_validity.label_tag }}
+                                            {{ form_2.insurance_casco_validity }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.tachograph_validity.label_tag }}
+                                            {{ form_2.tachograph_validity }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.adr_validity.label_tag }}
+                                            {{ form_2.adr_validity }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.fitness_protocol_validity.label_tag }}
+                                            {{ form_2.fitness_protocol_validity }}
+                                        </div>
+                                        <div class="vehicle-details-grid-item-unique">
+                                            {{ form_2.technical_check_validity.label_tag }}
+                                            {{ form_2.technical_check_validity }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+
+                <div class="edit-vehicle-actions">
+                    <button type="submit" class="edit-vehicle-btn-submit">Запази промените&nbsp;<i
+                            class="fas fa-save"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     {% include 'footer.html' %}
     </body>
+    <script src="{% static 'js/editFullInformation.js' %}"></script>
 {% endblock %}

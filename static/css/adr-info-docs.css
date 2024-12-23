@@ -1,0 +1,170 @@
+/* Основни стилове за страницата за редактиране на информация за превозно средство */
+.vehicle-details-page-unique {
+    max-width: 1000px; /* Намалена ширина за по-компактен прозорец */
+    margin: 30px auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Позволява скролиране по страницата */
+    max-height: 90vh; /* Заема по-малко от цялата височина на екрана */
+}
+
+.vehicle-details-header-unique {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.vehicle-details-title-unique {
+    font-size: 2em;
+    color: #3a7a7b;
+    font-weight: bold;
+}
+
+.vehicle-details-form-wrapper-unique {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-details-sections-container-unique {
+    display: flex;
+    flex-direction: row; /* Подрежда елементите хоризонтално */
+    gap: 15px; /* Задава разстоянието между формите */
+    justify-content: space-between; /* Разпределя формите равномерно */
+}
+
+.vehicle-details-choices-section-unique,
+.vehicle-details-dates-section-unique {
+    flex: 1 1 40%; /* Още по-компактна ширина на формите */
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 250px; /* Минимална ширина за всяка форма */
+}
+
+.choices-section-title-unique,
+.dates-section-title-unique {
+    font-size: 1.5em;
+    color: #3a7a7b;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.vehicle-details-choices-grid-unique,
+.vehicle-details-dates-grid-unique {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Компактни колони */
+    gap: 10px;
+}
+
+.vehicle-details-choices-grid-unique {
+    grid-template-columns: repeat(2, 1fr); /* две колони за по-компактна форма */
+}
+
+.vehicle-details-dates-grid-unique {
+    grid-template-columns: repeat(2, 1fr); /* Две колони за дата полета */
+}
+
+.vehicle-details-grid-item-unique {
+    display: flex;
+    flex-direction: column;
+}
+
+.vehicle-details-grid-item-unique label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.vehicle-details-grid-item-unique select,
+.vehicle-details-grid-item-unique input {
+    padding: 8px;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.vehicle-details-grid-item-unique select:focus,
+.vehicle-details-grid-item-unique input:focus {
+    border-color: #3a7a7b;
+    outline: none;
+    background-color: #f7faff;
+}
+
+.input-with-icon-unique {
+    position: relative;
+}
+
+.input-with-icon-unique input {
+    padding-right: 35px;
+}
+
+.input-with-icon-unique .fa-calendar {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+}
+
+.vehicle-details-error-unique {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.vehicle-details-actions-unique {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.vehicle-details-btn-submit-unique {
+    background-color: #3a7a7b;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+
+.vehicle-details-btn-submit-unique:hover {
+    background-color: #2e6062;
+    transform: scale(1.02);
+}
+
+/* Респонсив дизайн */
+@media (max-width: 992px) {
+    .vehicle-details-sections-container-unique {
+        flex-direction: column; /* Превключва към вертикално подреждане */
+    }
+
+    .vehicle-details-choices-section-unique,
+    .vehicle-details-dates-section-unique {
+        flex: 1 1 100%;
+    }
+
+    .vehicle-details-choices-grid-unique {
+        grid-template-columns: repeat(2, 1fr); /* Намалява до две колони на по-малки екрани */
+    }
+
+    .vehicle-details-dates-grid-unique {
+        grid-template-columns: 1fr; /* Една колона за дата полета на малки екрани */
+    }
+}
+
+@media (max-width: 768px) {
+    .vehicle-details-btn-submit-unique {
+        width: 100%;
+    }
+}

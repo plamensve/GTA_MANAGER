@@ -6,19 +6,21 @@
 
     <div class="profile-container-page">
         <div class="profile-header-section">
-            <h1 class="profile-title-heading">Профил на потребителя</h1>
+            <div class="profile-header-content">
+                <div class="profile-avatar-container">
+                    <img src="{% static 'images/profile-picture.jpg' %}" alt="Avatar" class="profile-avatar-img">
+                </div>
+                <div class="profile-header-details">
+                    <h1 class="profile-title-heading">{{ current_user.first_name }} {{ current_user.last_name }}</h1>
+                    <p class="profile-username">@{{ current_user.username }}</p>
+                </div>
+            </div>
         </div>
 
         <div class="profile-main-content">
-            <div class="profile-info-box">
-                <div class="profile-avatar-container">
-                    <!-- Място за аватар -->
-                    <img src="{% static 'images/profile-picture.jpg' %}" alt="Avatar" class="profile-avatar-img">
-                </div>
+            <div class="profile-info-section">
+                <h2 class="section-title">Лична информация</h2>
                 <div class="profile-details-box">
-                    <p class="profile-detail-item"><strong>Потребителско име:</strong> {{ current_user.username }}</p>
-                    <p class="profile-detail-item"><strong>Име:</strong> {{ current_user.first_name }}</p>
-                    <p class="profile-detail-item"><strong>Фамилия:</strong> {{ current_user.last_name }}</p>
                     <p class="profile-detail-item"><strong>Email:</strong> {{ current_user.email }}</p>
                     <p class="profile-detail-item"><strong>Дата на регистрация:</strong> {{ current_user.date_joined }}</p>
                     <p class="profile-detail-item"><strong>Последно активен:</strong> {{ current_user.last_login }}</p>

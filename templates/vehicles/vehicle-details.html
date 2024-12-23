@@ -49,16 +49,20 @@
                 </tbody>
             </table>
 
-            <div class="vehicle-detail-actions-vhl vehicle-page-actions-vhl">
-                <a href="{% url 'add-full-information' current_vehicle.pk %}"
-                   class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Добави информация
-                    <i class="fas fa-plus-circle"></i></a>
-            </div>
+            {% if not vehicle_information %}
+                <div class="vehicle-detail-actions-vhl vehicle-page-actions-vhl">
+                    <a href="{% url 'add-full-information' current_vehicle.pk %}"
+                       class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Добави информация
+                        <i class="fas fa-plus-circle"></i></a>
+                </div>
+            {% endif %}
+
             <div class="vehicle-detail-actions-vhl vehicle-page-actions-vhl">
                 <a href="{% url 'edit-information' current_vehicle.pk %}"
-                   class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Редактирай
+                   class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Редактирай МПС Досие
                     <i class="fas fa-edit"></i></a>
             </div>
+        
             <div class="vehicle-detail-actions-vhl vehicle-page-actions-vhl">
                 <a href="{% url 'delete-information' current_vehicle.pk %}"
                    class="button-vhl edit-button-vhl vehicle-page-edit-vhl">Изтриване

@@ -9,7 +9,7 @@ from openpyxl.styles import Font, Alignment, Border, Side
 
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, VehicleCreateForm, CustomUserChangeForm, \
     VehicleFullDetailsCreateForm, VehicleEditForm
-from .models import Vehicles
+from .models import Vehicles, VehicleFullDetails
 from .utils import get_all_vehicles, vehicle_full_details_info
 from openpyxl import Workbook
 
@@ -123,6 +123,7 @@ def add_vehicle(request):
 @login_required(login_url='index')
 def vehicle_details(request, pk):
     vehicle_details = vehicle_full_details_info(pk)
+    vehicle_information = VehicleFullDetails.objects.filter(vehicle_id=pk).first()
 
     try:
         current_vehicle = Vehicles.objects.get(pk=pk)
@@ -135,6 +136,7 @@ def vehicle_details(request, pk):
         'current_vehicle': current_vehicle,
         'condition_class': condition_class,
         'vehicle_details': vehicle_details,
+        'vehicle_information': vehicle_information if vehicle_information else None,
     }
 
     return render(request, 'vehicles/vehicle-details.html', context)
@@ -155,7 +157,7 @@ def add_full_information(request, pk):
         form = VehicleFullDetailsCreateForm()
 
     context = {
-        'form': form
+        'form': form,
     }
 
     return render(request, 'vehicles/add-full-information.html', context)
@@ -164,19 +166,38 @@ def add_full_information(request, pk):
 @login_required(login_url='index')
 def edit_full_information(request, pk):
     vehicle_full_details = get_object_or_404(Vehicles, pk=pk)
+    vehicle_second_full_details = get_object_or_404(VehicleFullDetails, vehicle_id=pk)
 
     if request.method == 'POST':
         form = VehicleEditForm(request.POST, instance=vehicle_full_details)
-        if form.is_valid():
+        form_2 = VehicleFullDetailsCreateForm(request.POST, instance=vehicle_second_full_details)
+
+        if form.is_valid() and form_2.is_valid():
+            # Save the first form
             form.save()
-            return redirect('vehicle_details', pk=vehicle_full_details.pk)
+
+            # Save the second form with a ForeignKey to vehicle_full_details
+            second_details = form_2.save(commit=False)
+            second_details.vehicle = vehicle_full_details  # Свързване на ForeignKey
+            second_details.save()
+
+            print('All forms are valid')
+            return redirect('front-page')
         else:
-            form = VehicleEditForm(request.POST, instance=vehicle_full_details)
+            if not form.is_valid():
+                print('VehicleEditForm is invalid:')
+                print(form.errors)
+
+            if not form_2.is_valid():
+                print('VehicleFullDetailsCreateForm is invalid:')
+                print(form_2.errors)
     else:
         form = VehicleEditForm(instance=vehicle_full_details)
+        form_2 = VehicleFullDetailsCreateForm(instance=vehicle_second_full_details)
 
     context = {
         'form': form,
+        'form_2': form_2,
         'vehicle_full_details': vehicle_full_details,
     }
 

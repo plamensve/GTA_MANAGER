@@ -89,67 +89,80 @@ class VehicleFullDetails(models.Model):
 
     wheel_chock = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Нe'
+        default='Нe',
+        blank=True
     )
 
     two_warning_signs = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     eye_wash_liquid = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     reflective_vest = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     portable_lighting_fixture = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     a_pair_of_protective_gloves = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     eye_protection = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     mask = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     shovel = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     manhole_cover = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     collection_container = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     written_instructions_colored = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     fire_extinguishers = models.CharField(
         choices=DETAILS_CHOICE,
-        default='Не'
+        default='Не',
+        blank=True
     )
 
     insurance_civil_liability = models.DateField(

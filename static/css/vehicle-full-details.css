@@ -1,172 +1,178 @@
-/* Основни стилове */
-.vehicle-details-page {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
+fieldset {
+    width: 100%; /* Задава ширината на fieldset-а спрямо родителя */
+    max-width: 1200px; /* Максимална ширина, ако не искате да надвишава определена стойност */
+    border: none; /* Премахва бордъра */
+    border-radius: 5px; /* Заобляне, ако все пак е необходимо */
+    padding: 5px; /* Вътрешно отстояние */
+    margin: 0 auto 5px; /* Центриране и отстояние отдолу */
+    background-color: transparent;
+}
+
+form {
+    background-color: transparent; /* Уверете се, че формата няма фон */
+    border: none; /* Премахнете бордър, ако има */
+}
+
+/* Основни стилове за страницата за редактиране на информация за превозно средство */
+.edit-vehicle-page {
+    max-width: 900px; /* Запазена ширина */
+    margin: 20px auto; /* Центриране */
+    padding: 10px; /* Намалено вътрешно отстояние */
+    background-color: #ffffff; /* Светъл фон */
     font-family: 'Montserrat', sans-serif;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* По-семпло заобляне */
+    box-shadow: none; /* Премахнато засенчване */
 }
 
-/* Заглавие на страницата */
-.vehicle-details-header {
+.edit-vehicle-title {
     text-align: center;
-    margin-bottom: 20px;
+    font-size: 1.5em; /* Намален размер на шрифта */
+    color: #3a7a7b;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.vehicle-details-title {
-    font-size: 1.8em;
-    color: #3a7a7b;
+
+
+.tab-menu {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
     margin: 0;
-    font-weight: bold;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Контейнер за секции */
-.vehicle-details-sections-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-/* Секции (Choices и Дати) */
-.vehicle-details-choices-section,
-.vehicle-details-dates-section {
-    flex: 1 1 40%;
-    margin-bottom: 5px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-height: 350px; /* Добави минимална височина */
-}
-
-
-.vehicle-details-choices-section {
-    min-height: 350px;
-}
-
-/* Заглавия на секциите */
-.choices-section-title,
-.dates-section-title {
-    font-size: 1.5em;
-    color: #3a7a7b;
-    margin-bottom: 25px;
+.tab-item {
+    flex: 1;
     text-align: center;
-}
-
-/* Грид за Choices */
-.vehicle-details-choices-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-/* Грид за Дати */
-.vehicle-details-dates-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-/* Полета */
-.vehicle-details-grid-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.vehicle-details-grid-item label {
+    padding: 5px 0; /* Намалено вътрешно отстояние */
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: #3a7a7b;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.vehicle-details-grid-item select,
-.vehicle-details-grid-item input {
+.tab-item.active {
+    background-color: #3a7a7b;
+    color: #ffffff;
+}
+
+.tab-item:hover {
+    background-color: #2e6062;
+    color: #ffffff;
+}
+
+.tab-content {
+    padding: 10px; /* Намалено вътрешно отстояние */
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    border: none; /* Премахната черна линия */
+}
+
+/* Стилове за първия таб (Основна информация) */
+#basic-info .edit-vehicle-form {
+    background-color: #ffffff;
+    padding: 10px; /* Намалено вътрешно отстояние */
+    border-radius: 5px; /* По-семпло заобляне */
+}
+
+#basic-info .form-row {
+    display: flex;
+    align-items: center; /* Подравнява всички елементи вертикално на едно ниво */
+    gap: 10px; /* Разстояние между колоните */
+    margin-bottom: 10px;
+}
+
+#basic-info .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Лейбълите над инпутите */
+    gap: 5px; /* Разстояние между лейбълите и инпутите */
+}
+
+#basic-info .form-group strong {
+    font-weight: bold;
+    margin-bottom: 5px; /* Унифицирано разстояние под лейбъла */
+}
+
+#basic-info .form-group input,
+#basic-info .form-group select {
+    flex: none;
+    width: 100%; /* Унифицира ширината на инпутите */
     padding: 8px;
-    font-size: 0.9em;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fdfdfd;
-    transition: border-color 0.3s ease-in-out;
+    box-sizing: border-box; /* Уверява се, че padding не влияе на размера */
 }
 
-.vehicle-details-grid-item select:focus,
-.vehicle-details-grid-item input:focus {
+#basic-info .form-group input:focus,
+#basic-info .form-group select:focus {
     border-color: #3a7a7b;
     outline: none;
     background-color: #f7faff;
 }
 
-/* Иконка за календара */
-.input-with-icon {
-    position: relative;
+.edit-vehicle-actions {
+    background-color: transparent; /* Уверете се, че няма фон */
+    padding: 0; /* Премахва вътрешните отстояния */
+    margin: 0; /* Премахва външните отстояния */
+    text-align: center; /* Центриране на бутона */
 }
 
-.input-with-icon input {
-    padding-right: 40px;
-}
-
-.input-with-icon .fa-calendar {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-    pointer-events: none;
-}
-
-/* Бутон */
-.vehicle-details-actions {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.vehicle-details-btn-submit {
-    background-color: #3a7a7b;
-    color: #fff;
-    padding: 12px 30px; /* Увеличаване на страничното разстояние за по-голяма дължина */
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
+#basic-info .edit-vehicle-btn-submit {
+    background-color: #3a7a7b; /* Задава основен фон за бутона */
+    border: none; /* Уверява се, че няма бордър */
+    padding: 10px 20px; /* Отстояние вътре в бутона */
+    color: #fff; /* Текстът да бъде бял */
+    font-size: 0.85em;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
-    font-weight: bold;
-    width: 100%; /* Заема цялата ширина на родителския елемент */
+    border-radius: 5px; /* Заоблени ъгли */
+    transition: background-color 0.3s;
 }
 
 
-.vehicle-details-btn-submit:hover {
+#basic-info .edit-vehicle-btn-submit:hover {
     background-color: #2e6062;
-    transform: scale(1.02);
 }
 
-/* Респонсив дизайн */
+#additional-info .vehicle-details-sections-container-unique {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+#additional-info .vehicle-details-choices-section-unique,
+#additional-info .vehicle-details-dates-section-unique {
+    flex: 1 1 45%; /* Запазена структура */
+    padding: 5px; /* Намалено вътрешно отстояние */
+    border-radius: 3px;
+    background-color: #ffffff;
+    min-width: 150px; /* По-малка минимална ширина */
+}
+
+/* Респонсив дизайн за Допълнителна информация */
 @media (max-width: 992px) {
-    .vehicle-details-sections-container {
+    #additional-info .vehicle-details-sections-container-unique {
         flex-direction: column;
     }
 
-    .vehicle-details-choices-section,
-    .vehicle-details-dates-section {
+    #additional-info .vehicle-details-choices-section-unique,
+    #additional-info .vehicle-details-dates-section-unique {
         flex: 1 1 100%;
-    }
-
-    .vehicle-details-choices-grid,
-    .vehicle-details-dates-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .vehicle-details-btn-submit {
-        width: 100%;
     }
 }
 
 @media (max-width: 768px) {
-    .vehicle-details-btn-submit {
+    #additional-info .vehicle-details-btn-submit-unique {
         width: 100%;
     }
 }
+

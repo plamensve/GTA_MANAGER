@@ -110,7 +110,8 @@ class VehicleEditForm(forms.ModelForm):
     def clean_register_number(self):
         register_number = self.cleaned_data.get('register_number')
 
-        if Vehicles.objects.filter(register_number=register_number).exists():
+        # Проверка за съществуващи записи, като изключим текущия обект
+        if Vehicles.objects.filter(register_number=register_number).exclude(pk=self.instance.pk).exists():
             raise ValidationError('Превозно средство с този регистрационен номер вече съществува.')
 
         return register_number
@@ -124,7 +125,7 @@ class VehicleFullDetailsCreateForm(forms.ModelForm):
         labels = {
             'wheel_chock': 'Kлинове',
             'two_warning_signs': '2 бр. знаци',
-            'eye_wash_liquid': 'Течност за промивка',
+            'eye_wash_liquid': 'Течност',
             'reflective_vest': 'Жилетка',
             'portable_lighting_fixture': 'Фенер',
             'a_pair_of_protective_gloves': 'Ръкавици',
@@ -133,10 +134,10 @@ class VehicleFullDetailsCreateForm(forms.ModelForm):
             'shovel': 'Лопата',
             'manhole_cover': 'Покривало',
             'collection_container': 'Контейнер',
-            'written_instructions_colored': 'Писмени инструкции',
+            'written_instructions_colored': 'Инструкции',
             'fire_extinguishers': 'Пожарогасители',
             'insurance_civil_liability': 'Застраховка ГО',
-            'insurance_casco_validity': 'Застраховка КАСКО',
+            'insurance_casco_validity': 'КАСКО',
             'tachograph_validity': 'Тахограф',
             'adr_validity': 'АДР',
             'fitness_protocol_validity': 'Протокол за годност',
