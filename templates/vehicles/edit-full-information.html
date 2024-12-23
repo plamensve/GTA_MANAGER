@@ -5,7 +5,7 @@
     {% include 'nav.html' %}
 
     <div class="edit-vehicle-page">
-        <h1 class="edit-vehicle-title">Форма за редактиране</h1>
+        <h1 class="edit-vehicle-title">Редактиране на информацията</h1>
 
         <form method="POST" action="{% url 'edit-information' vehicle_full_details.pk %}" class="edit-vehicle-form">
             {% csrf_token %}
@@ -20,7 +20,7 @@
                     <!-- Основна информация -->
                     <div class="tab-panel active" id="basic-info">
                         <fieldset>
-                            <legend class="section-title">Основна информация за автомобила</legend>
+                            <legend class="section-title">Основна информация за превозното средство</legend>
                             <div class="form-row">
                                 <div class="form-group">
                                     <strong>Тип:</strong> {{ form.type }}
@@ -123,30 +123,46 @@
                                 <!-- Секция за Валидност на документите -->
                                 <div class="vehicle-details-dates-section-unique">
                                     <h3 class="dates-section-title-unique">Валидност на документите</h3>
-                                    <div class="vehicle-details-dates-grid-unique">
-                                        <div class="vehicle-details-grid-item-unique">
-                                            {{ form_2.insurance_civil_liability.label_tag }}
+                                    <div class="vehicle-details-grid-item-unique">
+                                        {{ form_2.insurance_civil_liability.label_tag }}
+                                        <div class="input-with-icon">
                                             {{ form_2.insurance_civil_liability }}
+                                            <i class="fas fa-calendar-alt calendar-icon"></i>
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
-                                            {{ form_2.insurance_casco_validity.label_tag }}
+                                    </div>
+                                    <div class="vehicle-details-grid-item-unique">
+                                        {{ form_2.insurance_casco_validity.label_tag }}
+                                        <div class="input-with-icon">
                                             {{ form_2.insurance_casco_validity }}
+                                            <i class="fas fa-calendar-alt calendar-icon"></i>
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
-                                            {{ form_2.tachograph_validity.label_tag }}
+                                    </div>
+                                    <div class="vehicle-details-grid-item-unique">
+                                        {{ form_2.tachograph_validity.label_tag }}
+                                        <div class="input-with-icon">
                                             {{ form_2.tachograph_validity }}
+                                            <i class="fas fa-calendar-alt calendar-icon"></i>
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
-                                            {{ form_2.adr_validity.label_tag }}
+                                    </div>
+                                    <div class="vehicle-details-grid-item-unique">
+                                        {{ form_2.adr_validity.label_tag }}
+                                        <div class="input-with-icon">
                                             {{ form_2.adr_validity }}
+                                            <i class="fas fa-calendar-alt calendar-icon"></i>
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
-                                            {{ form_2.fitness_protocol_validity.label_tag }}
+                                    </div>
+                                    <div class="vehicle-details-grid-item-unique">
+                                        {{ form_2.fitness_protocol_validity.label_tag }}
+                                        <div class="input-with-icon">
                                             {{ form_2.fitness_protocol_validity }}
+                                            <i class="fas fa-calendar-alt calendar-icon"></i>
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
-                                            {{ form_2.technical_check_validity.label_tag }}
+                                    </div>
+                                    <div class="vehicle-details-grid-item-unique">
+                                        {{ form_2.technical_check_validity.label_tag }}
+                                        <div class="input-with-icon">
                                             {{ form_2.technical_check_validity }}
+                                            <i class="fas fa-calendar-alt calendar-icon"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -167,4 +183,5 @@
     {% include 'footer.html' %}
     </body>
     <script src="{% static 'js/editFullInformation.js' %}"></script>
+    <script src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}

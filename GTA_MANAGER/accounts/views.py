@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
@@ -181,16 +182,7 @@ def edit_full_information(request, pk):
             second_details.vehicle = vehicle_full_details  # Свързване на ForeignKey
             second_details.save()
 
-            print('All forms are valid')
             return redirect('front-page')
-        else:
-            if not form.is_valid():
-                print('VehicleEditForm is invalid:')
-                print(form.errors)
-
-            if not form_2.is_valid():
-                print('VehicleFullDetailsCreateForm is invalid:')
-                print(form_2.errors)
     else:
         form = VehicleEditForm(instance=vehicle_full_details)
         form_2 = VehicleFullDetailsCreateForm(instance=vehicle_second_full_details)
