@@ -16,4 +16,5 @@ urlpatterns = (
     path('vehicles/<int:pk>/edit-information', views.edit_full_information, name='edit-information'),
     path('vehicles/<int:pk>/delete-information', views.delete_information, name='delete-information'),
     path('generate-report/', views.generate_vehicle_report, name='generate_report'),
+    path('send-email/', views.send_email, name='send_email'),
 )

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<body>
+    <body>
     {% include 'nav.html' %}
 
     <div class="profile-container-page">
@@ -18,21 +18,46 @@
         </div>
 
         <div class="profile-main-content">
-            <div class="profile-info-section">
-                <h2 class="section-title">Лична информация</h2>
-                <div class="profile-details-box">
-                    <p class="profile-detail-item"><strong>Email:</strong> {{ current_user.email }}</p>
-                    <p class="profile-detail-item"><strong>Дата на регистрация:</strong> {{ current_user.date_joined }}</p>
-                    <p class="profile-detail-item"><strong>Последно активен:</strong> {{ current_user.last_login }}</p>
+            <!-- Tab Navigation -->
+            <div class="profile-tabs">
+                <button class="tab-button active" onclick="openTab(event, 'personal-info')">Лична информация</button>
+                <button class="tab-button" onclick="openTab(event, 'manager')">Мениджър</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="personal-info" class="tab-content active-tab">
+                <div class="profile-info-section">
+                    <h2 class="section-title">Лична информация</h2>
+                    <div class="profile-details-box">
+                        <p class="profile-detail-item"><strong>Email:</strong> {{ current_user.email }}</p>
+                        <p class="profile-detail-item"><strong>Дата на
+                            регистрация:</strong> {{ current_user.date_joined }}</p>
+                        <p class="profile-detail-item"><strong>Последно активен:</strong> {{ current_user.last_login }}
+                        </p>
+                    </div>
+                </div>
+                <div class="profile-action-buttons">
+                    <a href="{% url 'edit-profile-page' %}" class="profile-btn-edit">Редактирай профила</a>
                 </div>
             </div>
 
-            <div class="profile-action-buttons">
-                <a href="{% url 'edit-profile-page' %}" class="profile-btn-edit">Редактирай профила</a>
+            <div id="manager" class="tab-content">
+                <h2 class="section-title">Мениджър</h2>
+                <form id="email-form">
+                    {% csrf_token %}
+                    <div class="email-form">
+                        <input type="email" id="email-input" class="form-control" placeholder="Въведете имейл" required>
+                        <button type="button" class="btn btn-primary" onclick="sendEmail()">Изпрати доклад</button>
+                    </div>
+                </form>
+                <div id="success-message" class="success-message hidden">Имейлът беше изпратен успешно!</div>
             </div>
+
         </div>
     </div>
 
     {% include 'footer.html' %}
-</body>
+    <script src="{% static 'js/profilePage.js' %}"></script>
+    <script src="{% static 'js/sendTestEmailFunctionAction.js' %}"></script>
+    </body>
 {% endblock %}

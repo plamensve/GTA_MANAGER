@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse
 
 
-def send_test_email():
+def send_email(email):
     expiration_documents = check_expiration()
 
     # Създаваме списък за всички превозни средства
@@ -36,7 +36,7 @@ def send_test_email():
         subject="Обобщена информация за изтичащи документи",
         message=None,  # Оставяме текстовото съобщение празно
         from_email='svetoslavov.plamen@gmail.com',
-        recipient_list=['svetoslavov.dev@gmail.com'],
+        recipient_list=[email],
         html_message=html_message,
     )
     return HttpResponse('Email sent successfully!')

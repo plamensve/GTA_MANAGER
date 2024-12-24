@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseForbidden
+from django.core.mail import send_mail
+from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -13,6 +15,8 @@ from .forms import CustomUserCreationForm, CustomAuthenticationForm, VehicleCrea
 from .models import Vehicles, VehicleFullDetails
 from .utils import get_all_vehicles, vehicle_full_details_info
 from openpyxl import Workbook
+
+from ..web.utils import check_expiration
 
 
 class IndexView(TemplateView):
@@ -182,7 +186,7 @@ def edit_full_information(request, pk):
             second_details.vehicle = vehicle_full_details  # Свързване на ForeignKey
             second_details.save()
 
-            return redirect('front-page')
+            return redirect('vehicle_details', pk=pk)
     else:
         form = VehicleEditForm(instance=vehicle_full_details)
         form_2 = VehicleFullDetailsCreateForm(instance=vehicle_second_full_details)
@@ -272,3 +276,40 @@ def generate_vehicle_report(request):
     # Запазване на Excel файла в отговора
     wb.save(response)
     return response
+
+
+def send_email(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if not email:
+            return JsonResponse({'error': 'Email is required'}, status=400)
+
+        # Вашата логика за изпращане на имейл
+        expiration_documents = check_expiration()
+
+        documents_list = [
+            {
+                'current_registration_number': docs['current_registration_number'],
+                'insurance_civil_liability': docs['insurance_civil_liability'],
+                'insurance_casco_validity': docs['insurance_casco_validity'],
+                'tachograph_validity': docs['tachograph_validity'],
+                'adr_validity': docs['adr_validity'],
+                'fitness_protocol_validity': docs['fitness_protocol_validity'],
+                'technical_check_validity': docs['technical_check_validity'],
+            }
+            for docs in expiration_documents
+        ]
+
+        html_message = render_to_string('email_templates/expiration_email.html', {
+            'documents_list': documents_list,
+        })
+
+        send_mail(
+            subject="Обобщена информация за изтичащи документи",
+            message=None,
+            from_email='svetoslavov.plamen@gmail.com',
+            recipient_list=[email],
+            html_message=html_message,
+        )
+        return JsonResponse({'success': 'Email sent successfully'})
+    return JsonResponse({'error': 'Invalid request'}, status=400)

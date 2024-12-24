@@ -74,7 +74,7 @@ body.profile-page {
 }
 
 .profile-main {
-    margin-top: 50px;
+    margin-top: 20px;
     max-width: 1400px;
     padding: 70px;
     background-color: #fff;
@@ -266,7 +266,7 @@ th.vehicle-table-header.desc::after {
 
 
 .vehicle-table-container {
-    max-height: 400px; /* Максимална височина на таблицата */
+    max-height: 230px; /* Максимална височина на таблицата */
     overflow-y: auto; /* Вертикална скрол лента */
     overflow-x: hidden; /* Премахване на хоризонталната скрол лента */
     border: 1px solid #ddd; /* Граница около таблицата (по избор) */
