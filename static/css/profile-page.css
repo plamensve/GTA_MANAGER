@@ -131,10 +131,12 @@ body {
 
 .tab-content {
     display: none;
+    min-height: 300px; /* Задава минимална височина на табовете */
 }
 
 .tab-content.active-tab {
     display: block;
+    min-height: 300px; /* Същата минимална височина за активните табове */
 }
 
 .email-form {

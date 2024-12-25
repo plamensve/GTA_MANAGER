@@ -16,104 +16,105 @@
                     <li class="tab-item" data-tab="additional-info">Допълнителна информация</li>
                 </ul>
 
-                <div class="tab-content">
+                <div class="tab-content-unique">
                     <!-- Основна информация -->
-                    <div class="tab-panel active" id="basic-info">
-                        <fieldset>
-                            <legend class="section-title">Основна информация за превозното средство</legend>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <strong>Тип:</strong> {{ form.type }}
+                    <div class="tab-panel-unique active" id="basic-info-unique">
+                        <fieldset class="fieldset-basic-info-unique">
+
+                            <div class="form-row-basic-info-unique">
+                                <div class="form-group-basic-info-unique">
+                                    <strong class="label-type-unique">Тип:</strong> {{ form.type }}
                                 </div>
-                                <div class="form-group">
-                                    <strong>Марка:</strong> {{ form.brand }}
+                                <div class="form-group-basic-info-unique">
+                                    <strong class="label-brand-unique">Марка:</strong> {{ form.brand }}
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <strong>Модел:</strong> {{ form.model }}
+                            <div class="form-row-basic-info-unique">
+                                <div class="form-group-basic-info-unique">
+                                    <strong class="label-model-unique">Модел:</strong> {{ form.model }}
                                 </div>
-                                <div class="form-group">
-                                    <strong>Рег. Nº:</strong> {{ form.register_number }}
+                                <div class="form-group-basic-info-unique">
+                                    <strong class="label-register-number-unique">Рег.
+                                        №:</strong> {{ form.register_number }}
                                     {% if form.register_number.errors %}
-                                        <ul>
+                                        <ul class="error-list-register-number-unique">
                                             {% for error in form.register_number.errors %}
-                                                <li style="color: red;">{{ error }}</li>
+                                                <li class="error-item-register-number-unique"
+                                                    style="color: red;">{{ error }}</li>
                                             {% endfor %}
                                         </ul>
                                     {% endif %}
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <strong>Статус:</strong> {{ form.condition }}
+                            <div class="form-row-basic-info-unique">
+                                <div class="form-group-basic-info-unique">
+                                    <strong class="label-condition-unique">Статус:</strong> {{ form.condition }}
                                 </div>
-                                <div class="form-group">
-                                    <strong>АДР:</strong> {{ form.adr }}
+                                <div class="form-group-basic-info-unique">
+                                    <strong class="label-adr-unique">АДР:</strong> {{ form.adr }}
                                 </div>
                             </div>
                         </fieldset>
                     </div>
 
                     <!-- Допълнителна информация -->
-                    <div class="tab-panel" id="additional-info">
-                        <fieldset>
-                            <legend class="section-title">Допълнителна информация</legend>
+                    <div class="tab-panel-unique" id="additional-info-unique">
+                        <fieldset class="fieldset-additional-info-unique">
 
                             <div class="vehicle-details-sections-container-unique">
                                 <!-- Секция за АДР Оборудване -->
-                                <div class="vehicle-details-choices-section-unique">
-                                    <h3 class="choices-section-title-unique">АДР Оборудване</h3>
-                                    <div class="vehicle-details-choices-grid-unique">
-                                        <div class="vehicle-details-grid-item-unique">
+                                <div class="vehicle-details-choices-section-adr-unique">
+                                    <h3 class="choices-section-title-adr-unique">АДР Оборудване</h3><br>
+                                    <div class="vehicle-details-choices-grid-adr-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.wheel_chock.label_tag }}
                                             {{ form_2.wheel_chock }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.two_warning_signs.label_tag }}
                                             {{ form_2.two_warning_signs }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.eye_wash_liquid.label_tag }}
                                             {{ form_2.eye_wash_liquid }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.reflective_vest.label_tag }}
                                             {{ form_2.reflective_vest }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.portable_lighting_fixture.label_tag }}
                                             {{ form_2.portable_lighting_fixture }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.a_pair_of_protective_gloves.label_tag }}
                                             {{ form_2.a_pair_of_protective_gloves }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.eye_protection.label_tag }}
                                             {{ form_2.eye_protection }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.mask.label_tag }}
                                             {{ form_2.mask }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.shovel.label_tag }}
                                             {{ form_2.shovel }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.manhole_cover.label_tag }}
                                             {{ form_2.manhole_cover }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.collection_container.label_tag }}
                                             {{ form_2.collection_container }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.written_instructions_colored.label_tag }}
                                             {{ form_2.written_instructions_colored }}
                                         </div>
-                                        <div class="vehicle-details-grid-item-unique">
+                                        <div class="vehicle-details-grid-item-adr-unique">
                                             {{ form_2.fire_extinguishers.label_tag }}
                                             {{ form_2.fire_extinguishers }}
                                         </div>
@@ -121,55 +122,54 @@
                                 </div>
 
                                 <!-- Секция за Валидност на документите -->
-                                <div class="vehicle-details-dates-section-unique">
-                                    <h3 class="dates-section-title-unique">Валидност на документите</h3>
-                                    <div class="vehicle-details-grid-item-unique">
+                                <div class="vehicle-details-dates-section-docs-unique">
+                                    <h3 class="dates-section-title-docs-unique">Валидност на документите</h3><br>
+                                    <div class="vehicle-details-grid-item-docs-unique">
                                         {{ form_2.insurance_civil_liability.label_tag }}
-                                        <div class="input-with-icon">
+                                        <div class="input-with-icon-docs-unique">
                                             {{ form_2.insurance_civil_liability }}
-                                            <i class="fas fa-calendar-alt calendar-icon"></i>
+                                            <i class="fas fa-calendar-alt calendar-icon-docs-unique"></i>
                                         </div>
                                     </div>
-                                    <div class="vehicle-details-grid-item-unique">
+                                    <div class="vehicle-details-grid-item-docs-unique">
                                         {{ form_2.insurance_casco_validity.label_tag }}
-                                        <div class="input-with-icon">
+                                        <div class="input-with-icon-docs-unique">
                                             {{ form_2.insurance_casco_validity }}
-                                            <i class="fas fa-calendar-alt calendar-icon"></i>
+                                            <i class="fas fa-calendar-alt calendar-icon-docs-unique"></i>
                                         </div>
                                     </div>
-                                    <div class="vehicle-details-grid-item-unique">
+                                    <div class="vehicle-details-grid-item-docs-unique">
                                         {{ form_2.tachograph_validity.label_tag }}
-                                        <div class="input-with-icon">
+                                        <div class="input-with-icon-docs-unique">
                                             {{ form_2.tachograph_validity }}
-                                            <i class="fas fa-calendar-alt calendar-icon"></i>
+                                            <i class="fas fa-calendar-alt calendar-icon-docs-unique"></i>
                                         </div>
                                     </div>
-                                    <div class="vehicle-details-grid-item-unique">
+                                    <div class="vehicle-details-grid-item-docs-unique">
                                         {{ form_2.adr_validity.label_tag }}
-                                        <div class="input-with-icon">
+                                        <div class="input-with-icon-docs-unique">
                                             {{ form_2.adr_validity }}
-                                            <i class="fas fa-calendar-alt calendar-icon"></i>
+                                            <i class="fas fa-calendar-alt calendar-icon-docs-unique"></i>
                                         </div>
                                     </div>
-                                    <div class="vehicle-details-grid-item-unique">
+                                    <div class="vehicle-details-grid-item-docs-unique">
                                         {{ form_2.fitness_protocol_validity.label_tag }}
-                                        <div class="input-with-icon">
+                                        <div class="input-with-icon-docs-unique">
                                             {{ form_2.fitness_protocol_validity }}
-                                            <i class="fas fa-calendar-alt calendar-icon"></i>
+                                            <i class="fas fa-calendar-alt calendar-icon-docs-unique"></i>
                                         </div>
                                     </div>
-                                    <div class="vehicle-details-grid-item-unique">
+                                    <div class="vehicle-details-grid-item-docs-unique">
                                         {{ form_2.technical_check_validity.label_tag }}
-                                        <div class="input-with-icon">
+                                        <div class="input-with-icon-docs-unique">
                                             {{ form_2.technical_check_validity }}
-                                            <i class="fas fa-calendar-alt calendar-icon"></i>
+                                            <i class="fas fa-calendar-alt calendar-icon-docs-unique"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
                     </div>
-
                 </div>
 
                 <div class="edit-vehicle-actions">

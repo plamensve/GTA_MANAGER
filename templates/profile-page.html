@@ -21,7 +21,7 @@
             <!-- Tab Navigation -->
             <div class="profile-tabs">
                 <button class="tab-button active" onclick="openTab(event, 'personal-info')">Лична информация</button>
-                <button class="tab-button" onclick="openTab(event, 'manager')">Мениджър</button>
+                <button class="tab-button" onclick="openTab(event, 'manager')">Мениджър Авто парк</button>
             </div>
 
             <!-- Tab Content -->
@@ -42,7 +42,7 @@
             </div>
 
             <div id="manager" class="tab-content">
-                <h2 class="section-title">Мениджър</h2>
+                <h2 class="section-title">Мениджър авто парк</h2>
                 <form id="email-form">
                     {% csrf_token %}
                     <div class="email-form">

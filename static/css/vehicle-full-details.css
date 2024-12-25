@@ -59,6 +59,7 @@ form {
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* Добавяне на еднаква форма за табовете */
 }
 
 .tab-item.active {
@@ -73,20 +74,20 @@ form {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.tab-content {
+.tab-content-unique {
     padding: 10px;
 }
 
-.tab-panel {
+.tab-panel-unique {
     display: none;
 }
 
-.tab-panel.active {
+.tab-panel-unique.active {
     display: block;
     border: none;
 }
 
-#basic-info .edit-vehicle-form {
+#basic-info-unique .edit-vehicle-form {
     background-color: #ffffff;
     padding: 10px;
     border-radius: 5px;
@@ -94,27 +95,27 @@ form {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-#basic-info .form-row {
+#basic-info-unique .form-row-basic-info-unique {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
 }
 
-#basic-info .form-group {
+#basic-info-unique .form-group-basic-info-unique {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-#basic-info .form-group strong {
+#basic-info-unique .form-group-basic-info-unique strong {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-#basic-info .form-group input,
-#basic-info .form-group select {
+#basic-info-unique .form-group-basic-info-unique input,
+#basic-info-unique .form-group-basic-info-unique select {
     flex: none;
     width: 100%;
     padding: 8px;
@@ -124,8 +125,8 @@ form {
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-#basic-info .form-group input:focus,
-#basic-info .form-group select:focus {
+#basic-info-unique .form-group-basic-info-unique input:focus,
+#basic-info-unique .form-group-basic-info-unique select:focus {
     border-color: #3a7a7b;
     outline: none;
     background-color: #f7faff;
@@ -139,7 +140,7 @@ form {
     text-align: center;
 }
 
-#basic-info .edit-vehicle-btn-submit {
+#basic-info-unique .edit-vehicle-btn-submit {
     background-color: #3a7a7b;
     border: none;
     padding: 10px 20px;
@@ -151,60 +152,101 @@ form {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#basic-info .edit-vehicle-btn-submit:hover {
+#basic-info-unique .edit-vehicle-btn-submit:hover {
     background-color: #2e6062;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-#additional-info .vehicle-details-sections-container-unique {
+.additional-info-unique .vehicle-details-sections-container-unique {
     display: flex;
-    gap: 5px;
+    gap: 20px; /* Увеличено разстояние между секциите */
     justify-content: space-between;
-    flex-wrap: nowrap;
+    align-items: flex-start; /* Подравняване по началото на секциите */
+    flex-wrap: nowrap; /* Секциите остават една до друга */
 }
 
-#additional-info .vehicle-details-choices-section-unique,
-#additional-info .vehicle-details-dates-section-unique {
-    flex: 1 1 45%;
-    padding: 5px;
-    border-radius: 3px;
-    background-color: #ffffff;
-    min-width: 150px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+#additional-info-unique .vehicle-details-choices-section-adr-unique {
+    flex: 1 1 calc(50% - 10px); /* Равномерно разпределяне */
+    padding: 15px; /* Вътрешни отстояния */
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Светъл фон за по-добра четливост */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Леки сенки */
+    min-width: 250px; /* Минимална ширина за добро разпределение */
+    max-width: 500px; /* Максимална ширина за адаптивност */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация при взаимодействие */
+}
+
+#additional-info-unique .vehicle-details-choices-grid-adr-unique {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Две колони */
+    gap: 15px; /* Разстояние между елементите */
+}
+
+#additional-info-unique .vehicle-details-grid-item-adr-unique select {
+    width: 100%; /* Увеличаване на ширината на падащите менюта */
+    padding: 10px; /* Добавено вътрешно разстояние за по-добра четливост */
+    border-radius: 5px; /* Закръглени ъгли */
+    border: 1px solid #ccc; /* Лек борд */
+    box-sizing: border-box; /* Уверете се, че отстоянията са отчетени */
+    font-size: 14px; /* По-голям текст за четливост */
+}
+
+#additional-info-unique .vehicle-details-choices-section-adr-unique:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Подобрена сянка при посочване */
+}
+
+#additional-info-unique .vehicle-details-dates-section-docs-unique {
+    flex: 1 1 calc(50% - 10px); /* Равномерно разпределяне */
+    padding: 15px; /* Вътрешни отстояния */
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Светъл фон за по-добра четливост */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Леки сенки */
+    min-width: 250px; /* Минимална ширина за добро разпределение */
+    max-width: 500px; /* Максимална ширина за адаптивност */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация при взаимодействие */
 }
 
 @media (max-width: 992px) {
-    #additional-info .vehicle-details-sections-container-unique {
-        flex-direction: column;
+    .additional-info-unique .vehicle-details-sections-container-unique {
+        flex-wrap: wrap; /* Секциите ще се пренасят една под друга */
+        gap: 15px; /* Намалено разстояние за по-малки екрани */
     }
 
-    #additional-info .vehicle-details-choices-section-unique,
-    #additional-info .vehicle-details-dates-section-unique {
-        flex: 1 1 100%;
+    #additional-info-unique .vehicle-details-choices-section-adr-unique,
+    #additional-info-unique .vehicle-details-dates-section-docs-unique {
+        flex: 1 1 100%; /* Секциите заемат цялата ширина */
+        max-width: none; /* Премахване на ограничението на ширината */
+    }
+
+    #additional-info-unique .vehicle-details-choices-grid-adr-unique {
+        grid-template-columns: repeat(1, 1fr); /* Една колона за по-малки екрани */
     }
 }
 
 @media (max-width: 768px) {
-    #additional-info .vehicle-details-btn-submit-unique {
+    #additional-info-unique .vehicle-details-btn-submit-unique {
         width: 100%;
     }
 }
 
-.input-with-icon {
+.input-with-icon-docs-unique {
     position: relative;
     display: flex;
     align-items: center;
+    margin-bottom: 10px; /* Разстояние между полетата */
 }
 
-.input-with-icon input {
-    padding-right: 10px; /* Намалено отстояние за иконката */
+.input-with-icon-docs-unique input {
+    padding-right: 35px; /* Повече отстъп за иконката */
+    border: 1px solid #ddd; /* Лек борд за по-добра видимост */
+    border-radius: 5px;
+    height: 40px; /* Консистентен размер на полетата */
 }
 
-.input-with-icon .calendar-icon {
+.input-with-icon-docs-unique .calendar-icon-docs-unique {
     position: absolute;
-    right: 5px; /* Намалено разстояние от десния край */
+    right: 10px; /* Оптимизирано разстояние от десния край */
     color: #3a7a7b;
     pointer-events: none; /* Иконката да не блокира клика в инпут полето */
-    font-size: 14px; /* По-малък размер на иконката, ако е необходимо */
+    font-size: 18px; /* По-голям размер за по-добра видимост */
 }
-

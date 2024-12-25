@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Избор на всички табове и панели
     const tabs = document.querySelectorAll(".tab-item");
-    const panels = document.querySelectorAll(".tab-panel");
+    const panels = document.querySelectorAll(".tab-panel-unique");
 
     tabs.forEach((tab) => {
         tab.addEventListener("click", function () {
@@ -16,8 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Показване на съответния панел
             const target = this.getAttribute("data-tab");
-            document.getElementById(target).classList.add("active");
+            document.getElementById(`${target}-unique`).classList.add("active");
         });
     });
 });
-

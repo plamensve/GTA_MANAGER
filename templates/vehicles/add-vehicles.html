@@ -2,9 +2,13 @@
 {% block content %}
     <body>
     {% include 'nav.html' %}
+    <div class="form-header">
+        <h2>Добави информация за превозното средство</h2>
+        <div class="form-decoration"></div>
+    </div>
 
     <form method="POST" action="{% url 'add-vehicle' %}" class="vehicle-form">
-        <h1>Форма за регистрация в системата</h1><br><br>
+        <h1 class="add-vehicle-headtext">Форма за регистрация в системата</h1><br><br>
         {% csrf_token %}
         <div class="form-group">
             <strong>Tип:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </strong>{{ form_vehicle.type }}
@@ -31,7 +35,8 @@
         <div class="form-group">
             <strong>АДР:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</strong>{{ form_vehicle.adr }}
         </div>
-        <button type="submit" class="btn-submit">Регистрирай превозното средство&nbsp;<i class="fas fa-plus-circle"></i></button>
+        <button type="submit" class="btn-submit">Регистрирай превозното средство&nbsp;<i class="fas fa-plus-circle"></i>
+        </button>
     </form>
 
 
