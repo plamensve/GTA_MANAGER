@@ -9,3 +9,17 @@
     font-size: 0.9em;
     color: #dc3545;
 }
+
+.sign-up-container {
+    display: none; /* Скрий по подразбиране формата за регистрация */
+}
+
+.right-panel-active .sign-up-container {
+    display: block; /* Покажи формата за регистрация, ако панелът е активен */
+}
+
+.right-panel-active .sign-in-container {
+    display: none; /* Скрий формата за вход, ако панелът за регистрация е активен */
+}
+
+

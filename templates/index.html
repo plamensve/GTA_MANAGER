@@ -4,7 +4,7 @@
 {% block content %}
     <body>
     <div class="container {% if form_invalid %}right-panel-active{% endif %}" id="container">
-        <div class="form-container sign-up-container">
+        <div class="form-container sign-up-container" id="registerForm">
             <form action="{% url 'index' %}" method="POST">
                 {% csrf_token %}
                 <h1>Създай профил</h1>
@@ -62,7 +62,7 @@
             </form>
         </div>
 
-        <div class="form-container sign-in-container">
+        <div class="form-container sign-in-container" id="loginForm">
             <form action="{% url 'index' %}" method="POST">
                 {% csrf_token %}
                 <h1>Вход в системата</h1>
