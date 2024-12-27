@@ -1,46 +1,49 @@
 <html lang="bg">
-    <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
-        <table align="center" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; background-color: #ffffff; margin: 20px auto; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-            <tr>
-                <td align="center" bgcolor="#3a7a7b" style="padding: 20px;">
-                    <h2 style="color: #ffffff; margin: 0;">Обобщена информация за изтичащи документи</h2>
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 20px;">
-                    <table width="100%" cellpadding="5" cellspacing="0" style="border-collapse: collapse; text-align: left;">
-                        <thead>
-                            <tr style="background-color: #3a7a7b; color: #ffffff;">
-                                <th style="padding: 10px; border: 1px solid #ddd; width: 14%;">Регистрационен номер</th>
-                                <th style="padding: 10px; border: 1px solid #ddd; width: 14%;">Гражданска Отговорност</th>
-                                <th style="padding: 10px; border: 1px solid #ddd; width: 14%;">КАСКО</th>
-                                <th style="padding: 10px; border: 1px solid #ddd; width: 14%;">Тахограф</th>
-                                <th style="padding: 10px; border: 1px solid #ddd; width: 14%;">АДР</th>
-                                <th style="padding: 10px; border: 1px solid #ddd; width: 14%;">Протокол за годност</th>
-                                <th style="padding: 10px; border: 1px solid #ddd; width: 14%;">Технически преглед</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for doc in documents_list %}
-                            <tr>
-                                <td style="padding: 10px; border: 1px solid #ddd;">{{ doc.current_registration_number }}</td>
-                                <td style="padding: 10px; border: 1px solid #ddd;">{{ doc.insurance_civil_liability.days }} дни</td>
-                                <td style="padding: 10px; border: 1px solid #ddd;">{{ doc.insurance_casco_validity.days }} дни</td>
-                                <td style="padding: 10px; border: 1px solid #ddd;">{{ doc.tachograph_validity.days }} дни</td>
-                                <td style="padding: 10px; border: 1px solid #ddd;">{{ doc.adr_validity.days }} дни</td>
-                                <td style="padding: 10px; border: 1px solid #ddd;">{{ doc.fitness_protocol_validity.days }} дни</td>
-                                <td style="padding: 10px; border: 1px solid #ddd;">{{ doc.technical_check_validity.days }} дни</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="padding: 20px; background-color: #f4f4f4;">
-                    <p style="color: #555; font-size: 14px;">Този e-mail се генерира автоматично и ще го получавате в началото на всеки месец.</p>
-                </td>
-            </tr>
-        </table>
-    </body>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+<table align="center" cellpadding="0" cellspacing="0" width="600"
+       style="border-collapse: collapse; background-color: #ffffff; margin: 20px auto; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <tr>
+        <td align="center" bgcolor="#3a7a7b" style="padding: 20px;">
+            <h2 style="color: #ffffff; margin: 0;">Информация за итичащ срок на документи</h2>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px;">
+            <table width="100%" cellpadding="5" cellspacing="0" style="border-collapse: collapse; text-align: left;">
+                <thead>
+                <tr style="background-color: #3a7a7b; color: #ffffff;">
+                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Регистрационен номер</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Гражданска Отговорност</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">КАСКО</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Тахограф</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">АДР</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Протокол за годност</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Технически преглед</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for doc in documents_list %}
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.current_registration_number }}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.insurance_civil_liability }}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.insurance_casco_validity }}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.tachograph_validity }}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.adr_validity }}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.fitness_protocol_validity }}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.technical_check_validity }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="padding: 20px; background-color: #f4f4f4;">
+            <p style="color: #555; font-size: 14px;">Този e-mail се генерира автоматично и ще го получавате в началото
+                на всеки месец.</p>
+        </td>
+    </tr>
+</table>
+</body>
 </html>

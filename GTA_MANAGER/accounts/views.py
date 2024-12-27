@@ -16,7 +16,7 @@ from .models import Vehicles, VehicleFullDetails
 from .utils import get_all_vehicles, vehicle_full_details_info
 from openpyxl import Workbook
 
-from ..web.utils import check_expiration
+from ..web.utils import check_expiration, send_email_registration
 
 
 class IndexView(TemplateView):

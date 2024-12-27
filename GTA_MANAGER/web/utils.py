@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse
 
 
-def send_email(email):
+def send_email_registration(email):
     expiration_documents = check_expiration()
 
     # Създаваме списък за всички превозни средства
@@ -44,7 +44,6 @@ def send_email(email):
 
 def check_expiration():
     current_expiration_insurances = VehicleFullDetails.objects.all()
-    today = date.today()
     results = []
 
     for ins in current_expiration_insurances:
@@ -56,17 +55,17 @@ def check_expiration():
         technical_check_validity_result = None
 
         if ins.insurance_civil_liability:
-            insurance_civil_liability_result = ins.insurance_civil_liability - today
+            insurance_civil_liability_result = ins.insurance_civil_liability
         if ins.insurance_casco_validity:
-            insurance_casco_validity_result = ins.insurance_casco_validity - today
+            insurance_casco_validity_result = ins.insurance_casco_validity
         if ins.tachograph_validity:
-            tachograph_validity_result = ins.tachograph_validity - today
+            tachograph_validity_result = ins.tachograph_validity
         if ins.adr_validity:
-            adr_validity_result = ins.adr_validity - today
+            adr_validity_result = ins.adr_validity
         if ins.fitness_protocol_validity:
-            fitness_protocol_validity_result = ins.fitness_protocol_validity - today
+            fitness_protocol_validity_result = ins.fitness_protocol_validity
         if ins.technical_check_validity:
-            technical_check_validity_result = ins.technical_check_validity - today
+            technical_check_validity_result = ins.technical_check_validity
 
         current_number = get_current_vehicle(ins.vehicle_id)
         current_registration_number = current_number.register_number.upper()
