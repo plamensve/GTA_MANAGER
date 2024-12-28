@@ -8,6 +8,7 @@ from GTA_MANAGER.accounts.models import VehicleFullDetails, Vehicles
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from celery import shared_task
 
 
 def send_email_registration(email):
@@ -88,3 +89,5 @@ def check_expiration():
 def get_current_vehicle(vehicle_id):
     current_vehicle = Vehicles.objects.get(pk=vehicle_id)
     return current_vehicle
+
+
