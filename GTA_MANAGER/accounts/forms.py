@@ -51,7 +51,8 @@ class CustomUserChangeForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if 'password' in self.fields:
-            del self.fields['password']
+            self.fields['password'].widget.attrs['readonly'] = True
+
 
 
 class VehicleCreateForm(forms.ModelForm):

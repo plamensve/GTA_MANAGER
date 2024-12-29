@@ -50,7 +50,7 @@ class IndexView(TemplateView):
             if form.is_valid():
                 user = form.save()
                 login(request, user)
-                return redirect('front-page')
+                return redirect('after-register')
             else:
                 context['register_form'] = form  # Връща формата с грешки обратно в контекста
 
@@ -313,3 +313,7 @@ def send_email(request):
         )
         return JsonResponse({'success': 'Email sent successfully'})
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+def after_register(request):
+    return render(request, 'after-register.html')

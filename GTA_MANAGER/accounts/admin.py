@@ -12,7 +12,7 @@ class AppUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
 
-    list_display = ('username', 'email')
+    list_display = ('username', 'email', 'is_active')
 
     add_fieldsets = (
         (
@@ -27,5 +27,6 @@ class AppUserAdmin(UserAdmin):
     fieldsets = (
         ('Credentials', {'fields': ('email', 'password')}),
         ('Permissions', {'fields': ('is_staff', 'is_superuser', 'groups')}),
-        ('Important Dates', {'fields': ('last_login',)})
+        ('Important Dates', {'fields': ('last_login',)}),
+        ('Status', {'fields': ('is_active',)}),
     )

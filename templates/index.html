@@ -4,63 +4,63 @@
 {% block content %}
     <body>
     <div class="container {% if form_invalid %}right-panel-active{% endif %}" id="container">
-        <div class="form-container sign-up-container" id="registerForm">
-            <form action="{% url 'index' %}" method="POST">
-                {% csrf_token %}
-                <h1>Създай профил</h1>
-
-                <!-- Потребителско име -->
-                <div>
-                    {{ register_form.username|placeholder:"Потребителско име" }}
-                    {% if register_form.username.errors %}
-                        <ul class="error-list">
-                            {% for error in register_form.username.errors %}
-                                <li class="error">{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-
-                <!-- Имейл -->
-                <div>
-                    {{ register_form.email|placeholder:"Имейл" }}
-                    {% if register_form.email.errors %}
-                        <ul class="error-list">
-                            {% for error in register_form.email.errors %}
-                                <li class="error">{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-
-                <!-- Парола -->
-                <div>
-                    {{ register_form.password1|placeholder:"Парола" }}
-                    {% if register_form.password1.errors %}
-                        <ul class="error-list">
-                            {% for error in register_form.password1.errors %}
-                                <li class="error">{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-
-                <!-- Повторна парола -->
-                <div>
-                    {{ register_form.password2|placeholder:"Повтори паролата" }}
-                    {% if register_form.password2.errors %}
-                        <ul class="error-list">
-                            {% for error in register_form.password2.errors %}
-                                <li class="error">{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-
-                <input type="hidden" name="register" value="1">
-                <button type="submit">Регистрация</button>
-            </form>
-        </div>
+{#        <div class="form-container sign-up-container" id="registerForm">#}
+{#            <form action="{% url 'index' %}" method="POST">#}
+{#                {% csrf_token %}#}
+{#                <h1>Създай профил</h1>#}
+{##}
+{#                <!-- Потребителско име -->#}
+{#                <div>#}
+{#                    {{ register_form.username|placeholder:"Потребителско име" }}#}
+{#                    {% if register_form.username.errors %}#}
+{#                        <ul class="error-list">#}
+{#                            {% for error in register_form.username.errors %}#}
+{#                                <li class="error">{{ error }}</li>#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{##}
+{#                <!-- Имейл -->#}
+{#                <div>#}
+{#                    {{ register_form.email|placeholder:"Имейл" }}#}
+{#                    {% if register_form.email.errors %}#}
+{#                        <ul class="error-list">#}
+{#                            {% for error in register_form.email.errors %}#}
+{#                                <li class="error">{{ error }}</li>#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{##}
+{#                <!-- Парола -->#}
+{#                <div>#}
+{#                    {{ register_form.password1|placeholder:"Парола" }}#}
+{#                    {% if register_form.password1.errors %}#}
+{#                        <ul class="error-list">#}
+{#                            {% for error in register_form.password1.errors %}#}
+{#                                <li class="error">{{ error }}</li>#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{##}
+{#                <!-- Повторна парола -->#}
+{#                <div>#}
+{#                    {{ register_form.password2|placeholder:"Повтори паролата" }}#}
+{#                    {% if register_form.password2.errors %}#}
+{#                        <ul class="error-list">#}
+{#                            {% for error in register_form.password2.errors %}#}
+{#                                <li class="error">{{ error }}</li>#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{##}
+{#                <input type="hidden" name="register" value="1">#}
+{#                <button type="submit">Регистрация</button>#}
+{#            </form>#}
+{#        </div>#}
 
         <div class="form-container sign-in-container" id="loginForm">
             <form action="{% url 'index' %}" method="POST">
@@ -81,9 +81,11 @@
                     <button class="ghost" id="signIn">Вход</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Здравейте!</h1>
-                    <p>Въведете Вашите данни за регистрация</p>
-                    <button class="ghost" id="signUp">Регистрация</button>
+{#                    <h1>GTA Manager</h1>#}
+                    <img class="profile-picture-img" src="{% static 'images/fon.jpg' %}" 
+                         alt="Профилна снимка" style="width: 300px; height: 300px; object-fit: cover;">
+{#                    <p>Въведете Вашите данни за регистрация</p>#}
+{#                    <button class="ghost" id="signUp">Регистрация</button>#}
                 </div>
             </div>
         </div>

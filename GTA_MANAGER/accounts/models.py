@@ -23,6 +23,10 @@ class CustomUser(AbstractUser, PermissionsMixin):
         ]
     )
 
+    is_active = models.BooleanField(
+        default=False,
+    )
+
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
