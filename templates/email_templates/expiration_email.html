@@ -4,7 +4,8 @@
        style="border-collapse: collapse; background-color: #ffffff; margin: 20px auto; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
     <tr>
         <td align="center" bgcolor="#3a7a7b" style="padding: 20px;">
-            <h2 style="color: #ffffff; margin: 0;">Служебни превозни средства, камиони и цистерни - краен срок за подновяване на документите</h2>
+            <h2 style="color: #ffffff; margin: 0;">Служебни превозни средства, камиони и цистерни - краен срок за
+                подновяване на документите</h2>
         </td>
     </tr>
     <tr>
@@ -22,15 +23,36 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tbody>
                 {% for doc in documents_list %}
                     <tr>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.current_registration_number }}</td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.insurance_civil_liability }}</td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.insurance_casco_validity }}</td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.tachograph_validity }}</td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.adr_validity }}</td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.fitness_protocol_validity }}</td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">{{ doc.technical_check_validity }}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
+                            {{ doc.current_registration_number|default:"Няма налични данни" }}
+                        </td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
+                            {{ doc.insurance_civil_liability|default:"Няма налични данни" }}
+                        </td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
+                            {{ doc.insurance_casco_validity|default:"Няма налични данни" }}
+                        </td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
+                            {{ doc.tachograph_validity|default:"Няма налични данни" }}
+                        </td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
+                            {{ doc.adr_validity|default:"Няма налични данни" }}
+                        </td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
+                            {{ doc.fitness_protocol_validity|default:"Няма налични данни" }}
+                        </td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
+                            {{ doc.technical_check_validity|default:"Няма налични данни" }}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="7" style="padding: 10px; border: 1px solid #ddd; text-align: center;">
+                            Няма налични документи.
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

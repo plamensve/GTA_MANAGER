@@ -65,7 +65,7 @@ class IndexView(TemplateView):
         return self.render_to_response(context)
 
 
-@login_required()
+@login_required(login_url='index')
 def front_page(request):
     all_vehicles = get_all_vehicles()
     current_user = request.user
@@ -75,7 +75,8 @@ def front_page(request):
         'current_user': current_user,
     }
 
-    return render(request, 'front_page.html', contex)
+    if current_user.is_authenticated:
+        return render(request, 'front_page.html', contex)
 
 
 @login_required(login_url='index')

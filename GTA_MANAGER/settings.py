@@ -143,7 +143,6 @@ STATICFILES_DIRS = (
 
 HTML_FILE_PATH = os.path.join(BASE_DIR, 'templates/email_templates/expiration_email.html')
 
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
@@ -165,30 +164,7 @@ EMAIL_HOST_PASSWORD = '7c6f12d021afd54adbc2cc49608454eb'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'svetoslavov.dev@gmail.com'
 
-
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
