@@ -318,3 +318,6 @@ def send_email(request):
 
 def after_register(request):
     return render(request, 'after-register.html')
+
+
+#test
