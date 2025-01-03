@@ -54,7 +54,6 @@ class CustomUserChangeForm(UserChangeForm):
             self.fields['password'].widget.attrs['readonly'] = True
 
 
-
 class VehicleCreateForm(forms.ModelForm):
     class Meta:
         model = Vehicles
@@ -83,7 +82,7 @@ class VehicleCreateForm(forms.ModelForm):
         if Vehicles.objects.filter(register_number=register_number).exists():
             raise ValidationError('Превозно средство с този регистрационен номер вече съществува.')
 
-        return register_number
+        return register_number.upper()
 
 
 class VehicleEditForm(forms.ModelForm):
