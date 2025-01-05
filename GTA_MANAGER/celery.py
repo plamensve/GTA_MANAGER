@@ -1,5 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 import os
+from datetime import timedelta
+
 from celery import Celery
 from celery.schedules import crontab
 
@@ -15,11 +17,10 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Автоматично откриване на задачи в приложенията
 app.autodiscover_tasks()
 
-
 app.conf.beat_schedule = {
     'run-my-task-every-minute': {
         'task': 'GTA_MANAGER.web.tasks.send_email_task',
-        'schedule': crontab(day_of_month='1,15', hour='7', minute='00'),
+        'schedule': crontab(day_of_month='1,15', hour='7', minute='0'),
         'args': ('Служебни превозни средства, камиони и цистерни - краен срок за подновяване на документите',
                  'Test Message', ['svetoslavov.plamen@gmail.com']),
     },
@@ -27,6 +28,7 @@ app.conf.beat_schedule = {
 
 # Настройване на времевата зона
 app.conf.timezone = 'UTC'
+
 
 # Примерна задача за дебъгване
 @app.task(bind=True)
