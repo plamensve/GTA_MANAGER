@@ -9,52 +9,52 @@
         </td>
     </tr>
     <tr>
-        <td style="padding: 20px;">
+        <td style="padding: 10px">
             <table width="100%" cellpadding="5" cellspacing="0" style="border-collapse: collapse; text-align: left;">
                 <thead>
                 <tr style="background-color: #3a7a7b; color: #ffffff;">
-                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Регистрационен номер</th>
-                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Тип на превозното средство</th>
-                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Гражданска Отговорност</th>
-                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">КАСКО</th>
-                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Тахограф</th>
-                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">АДР</th>
-                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Протокол за годност</th>
-                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Технически преглед</th>
+                    <th style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">Рег. №</th>
+                    <th style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">Тип</th>
+                    <th style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">Гр. О-ст</th>
+                    <th style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">КАСКО</th>
+                    <th style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">Тахограф</th>
+                    <th style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">АДР</th>
+                    <th style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">Протокол за годност</th>
+                    <th style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">Технически преглед</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tbody>
                 {% for doc in documents_list %}
                     <tr>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
-                            {{ doc.current_registration_number|default:"Няма налични данни" }}
+                        <td style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">
+                            {{ doc.current_registration_number|default:"--------" }}
                         </td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
-                            {{ doc.current_type_name|default:"Няма налични данни" }}
+                        <td style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">
+                            {{ doc.current_type_name|default:"--------" }}
                         </td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
-                            {{ doc.insurance_civil_liability|default:"Няма налични данни" }}
+                        <td style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">
+                            {{ doc.insurance_civil_liability|default:"--------" }}
                         </td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
-                            {{ doc.insurance_casco_validity|default:"Няма налични данни" }}
+                        <td style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">
+                            {{ doc.insurance_casco_validity|default:"--------" }}
                         </td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
-                            {{ doc.tachograph_validity|default:"Няма налични данни" }}
+                        <td style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">
+                            {{ doc.tachograph_validity|default:"--------" }}
                         </td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
-                            {{ doc.adr_validity|default:"Няма налични данни" }}
+                        <td style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">
+                            {{ doc.adr_validity|default:"--------" }}
                         </td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
-                            {{ doc.fitness_protocol_validity|default:"Няма налични данни" }}
+                        <td style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">
+                            {{ doc.fitness_protocol_validity|default:"--------" }}
                         </td>
-                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
-                            {{ doc.technical_check_validity|default:"Няма налични данни" }}
+                        <td style="padding: 5px; border: 1px solid #ddd; min-width: 100px;">
+                            {{ doc.technical_check_validity|default:"--------" }}
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="7" style="padding: 10px; border: 1px solid #ddd; text-align: center;">
+                        <td colspan="7" style="padding: 5px; border: 1px solid #ddd; text-align: center;">
                             Няма налични документи.
                         </td>
                     </tr>
@@ -71,5 +71,6 @@
         </td>
     </tr>
 </table>
+
 </body>
 </html>
