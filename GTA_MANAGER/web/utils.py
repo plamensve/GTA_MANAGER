@@ -49,6 +49,7 @@ def check_expiration():
 
     for ins in current_expiration_insurances:
         insurance_civil_liability_result = None
+        current_type = None
         insurance_casco_validity_result = None
         tachograph_validity_result = None
         adr_validity_result = None
@@ -71,8 +72,12 @@ def check_expiration():
         current_number = get_current_vehicle(ins.vehicle_id)
         current_registration_number = current_number.register_number.upper()
 
+        current_type = get_current_vehicle(ins.vehicle_id)
+        current_type_name = current_type.type.upper()
+
         result = {
             'current_registration_number': current_registration_number,
+            'current_type_name': current_type_name,
             'insurance_civil_liability': insurance_civil_liability_result,
             'insurance_casco_validity': insurance_casco_validity_result,
             'tachograph_validity': tachograph_validity_result,

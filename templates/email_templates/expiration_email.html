@@ -14,6 +14,7 @@
                 <thead>
                 <tr style="background-color: #3a7a7b; color: #ffffff;">
                     <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Регистрационен номер</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Тип на превозното средство</th>
                     <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Гражданска Отговорност</th>
                     <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">КАСКО</th>
                     <th style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">Тахограф</th>
@@ -28,6 +29,9 @@
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
                             {{ doc.current_registration_number|default:"Няма налични данни" }}
+                        </td>
+                        <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
+                            {{ doc.current_type_name|default:"Няма налични данни" }}
                         </td>
                         <td style="padding: 10px; border: 1px solid #ddd; min-width: 150px;">
                             {{ doc.insurance_civil_liability|default:"Няма налични данни" }}

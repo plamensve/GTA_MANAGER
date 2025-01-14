@@ -28,14 +28,14 @@ SECRET_KEY = 'django-insecure-xu9qu*j20scupmofwt#+rra2isy=xj$$18seas8)r--qs%1=y4
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    # '127.0.0.1',
-    # 'localhost',
-    # 'b3ca-88-87-18-207.ngrok-free.app'  # Заменете с текущия домейн на Ngrok
+    '127.0.0.1',
+    '100.105.21.110',
+    'gta-manager.taild1327f.ts.net',
 ]
 
-# CSRF_TRUSTED_ORIGINS = [
-#     'https://b3ca-88-87-18-207.ngrok-free.app'  # Заменете с текущия домейн на Ngrok
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://gta-manager.taild1327f.ts.net:8000',
+]
 
 # Application definition
 

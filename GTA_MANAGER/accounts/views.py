@@ -291,6 +291,7 @@ def send_email(request):
         documents_list = [
             {
                 'current_registration_number': docs['current_registration_number'],
+                'current_type_name': docs['current_type_name'],
                 'insurance_civil_liability': docs['insurance_civil_liability'],
                 'insurance_casco_validity': docs['insurance_casco_validity'],
                 'tachograph_validity': docs['tachograph_validity'],
