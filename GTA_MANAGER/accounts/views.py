@@ -317,6 +317,79 @@ def send_email(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+@login_required(login_url='index')
+def generate_vehicle_report_info(request):
+    # Създаване на Excel файл
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Документи"
+
+    # Стилове
+    bold_font = Font(bold=True, size=16)
+    center_alignment = Alignment(horizontal='center', vertical='center')
+    border = Border(
+        left=Side(border_style='thin'),
+        right=Side(border_style='thin'),
+        top=Side(border_style='thin'),
+        bottom=Side(border_style='thin')
+    )
+
+    # Добавяне на заглавия
+    header_info = 'ДЖИ ТИ ЕЙ ПЕТРОЛИУМ ООД - Придружаващи документи'
+    ws.append([header_info])
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=8)  # Обединяване на клетките
+    header_cell = ws.cell(row=1, column=1)
+    header_cell.font = bold_font
+    header_cell.alignment = center_alignment
+    header_cell.border = border
+
+    headers = ["№", "Рег. №", "Гражданска отговорност", "Каско", "Тахограф",
+               "АДР", "Протокол за годност", "Технически преглед"]
+    ws.append(headers)
+
+    for col_num, header in enumerate(headers, start=1):
+        cell = ws.cell(row=2, column=col_num)
+        cell.font = bold_font
+        cell.alignment = center_alignment
+        cell.border = border
+
+    all_vehicles = VehicleFullDetails.objects.select_related('vehicle')
+
+    for idx, vehicle_detail in enumerate(all_vehicles, start=1):
+        row = [
+            idx,
+            vehicle_detail.vehicle.register_number or 'Няма данни',
+            vehicle_detail.insurance_civil_liability or 'Няма данни',
+            vehicle_detail.insurance_casco_validity or 'Няма данни',
+            vehicle_detail.tachograph_validity or 'Няма данни',
+            vehicle_detail.adr_validity or 'Няма данни',
+            vehicle_detail.fitness_protocol_validity or 'Няма данни',
+            vehicle_detail.technical_check_validity or 'Няма данни',
+        ]
+        # Добавете реда към вашия Excel файл или друг изход
+        ws.append(row)
+
+        for col_num, value in enumerate(row, start=1):
+            cell = ws.cell(row=idx + 2, column=col_num)
+            cell.alignment = center_alignment
+            cell.border = border
+
+    # Индивидуална ширина на колоните
+    column_widths = [5.0, 20.0, 30.0, 30.0, 25.0, 25.0, 30.0, 30.0]  # Индивидуални ширини за всяка колона
+    for col_num, width in enumerate(column_widths, start=1):
+        col_letter = ws.cell(row=2, column=col_num).column_letter
+        ws.column_dimensions[col_letter].width = width
+
+    # Настройки за отговор
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename="vehicle_report.xlsx"'
+
+    # Запазване на Excel файла в отговора
+    wb.save(response)
+    return response
+
+
+
 def after_register(request):
     return render(request, 'after-register.html')
 
