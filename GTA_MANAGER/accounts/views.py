@@ -477,6 +477,7 @@ def freight_trains(request):
     return render(request, 'vehicles/freight-trains.html', context)
 
 
+@login_required(login_url='index')
 def export_to_excel(request):
     # Създаване на нов Excel файл
     wb = openpyxl.Workbook()
