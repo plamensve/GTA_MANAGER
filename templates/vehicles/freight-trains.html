@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <body>
+    {% include 'nav.html' %}
+
+    <main>
+    
+        <section class="composition">
+        <h1 class="ft-deadline">Товарни композиции - срокове за подновяване на придружаващите документи</h1>
+            <div class="comp">
+                <h2>Влекачи</h2>
+                {% for truck in trucks %}
+                    <div class="vehicle-item">
+                        {{ truck.register_number }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="comp">
+                <h2>Цистерни</h2>
+                {% for tank in tanks %}
+                    <div class="vehicle-item">
+                        {{ tank.register_number }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="comp">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Документи</th>
+                        {% for composition in compositions %}
+                        	<th>{{ composition }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="font-weight: bold">Гражданска отговорност</td>
+                        {% for icl in insurance_civil_liability %}
+                            <td>{{ icl }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Каско</td>
+                        {% for casco in casco_validity %}
+                        	<td>{{ casco }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Тахограф</td>
+                        {% for taho in tachograph_validity %}
+                        <td>{{ taho }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">АДР</td>
+                        {% for x in adr %}
+                        <td>{{ x }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Протокол за годност</td>
+                        {% for fp in fitness_protocol_validity %}
+                        <td>{{ fp }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Технически преглед</td>
+                        {% for tch in technical_check_validity %}
+                        <td>{{ tch }}</td>
+                        {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    </body>
+{% endblock %}

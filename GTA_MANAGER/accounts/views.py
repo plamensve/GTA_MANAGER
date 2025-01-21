@@ -272,7 +272,7 @@ def generate_vehicle_report(request):
 
     # Настройки за отговор
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename="vehicle_report.xlsx"'
+    response['Content-Disposition'] = 'attachment; filename="Fleet_Masters_Report.xlsx"'
 
     # Запазване на Excel файла в отговора
     wb.save(response)
@@ -382,12 +382,72 @@ def generate_vehicle_report_info(request):
 
     # Настройки за отговор
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename="vehicle_report.xlsx"'
+    response['Content-Disposition'] = 'attachment; filename="Expiring_Documents_Tracker.xlsx"'
 
     # Запазване на Excel файла в отговора
     wb.save(response)
     return response
 
+
+def freight_trains(request):
+    trucks = Vehicles.objects.filter(type='ВЛЕКАЧ')
+    tanks = Vehicles.objects.filter(type='ЦИСТЕРНА')
+    compositions = []
+    insurance_civil_liability = []
+    casco_validity = []
+    tachograph_validity = []
+    adr = []
+    fitness_protocol_validity = []
+    technical_check_validity = []
+
+    for tr in trucks:
+        for tn in tanks:
+            if tn.comp == tr.comp:  # Проверка за съвпадение
+                compositions.append(f"{tr.register_number} / {tn.register_number}")
+
+                truck_insurance = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
+                tank_insurance = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
+                (insurance_civil_liability
+                 .append(f"{truck_insurance.insurance_civil_liability} / {tank_insurance.insurance_civil_liability}"))
+
+                truck_casco = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
+                tank_casco = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
+                (casco_validity
+                 .append(f"{truck_casco.insurance_casco_validity} / {tank_casco.insurance_casco_validity}"))
+
+                truck_tachograph_validity = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
+                tank_tachograph_validity = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
+                (tachograph_validity
+                 .append(f"{truck_tachograph_validity.tachograph_validity} / {tank_tachograph_validity.tachograph_validity}"))
+
+                truck_adr = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
+                tank_adr = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
+                (adr
+                 .append(f"{truck_adr.adr_validity} / {tank_adr.adr_validity}"))
+
+                truck_fitness = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
+                tank_fitness = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
+                (fitness_protocol_validity
+                 .append(f"{truck_fitness.fitness_protocol_validity} / {tank_fitness.fitness_protocol_validity}"))
+
+                truck_technical_check = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
+                tank_technical_check = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
+                (technical_check_validity
+                 .append(f"{truck_technical_check.technical_check_validity} / {tank_technical_check.technical_check_validity}"))
+
+    context = {
+        'trucks': trucks,
+        'tanks': tanks,
+        'compositions': compositions,
+        'insurance_civil_liability': insurance_civil_liability,
+        'casco_validity': casco_validity,
+        'tachograph_validity': tachograph_validity,
+        'adr': adr,
+        'fitness_protocol_validity': fitness_protocol_validity,
+        'technical_check_validity': technical_check_validity,
+    }
+
+    return render(request, 'vehicles/freight-trains.html', context)
 
 
 def after_register(request):

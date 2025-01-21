@@ -1,0 +1,80 @@
+.comp {
+    display: inline-block;
+    margin: -30px 20px;
+}
+
+
+.composition {
+    display: inline-block;
+    margin-bottom: 40px;
+    padding: 80px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #3a7a7b;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.vehicle-item:hover {
+    background-color: #ffffff;
+    border-color: #3a7a7b;
+    cursor: pointer;
+}
+
+.vehicle-item {
+    color: white;
+}
+
+.vehicle-item:hover {
+    color: #3a7a7b;
+}
+
+.ft-deadline {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 16px;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    thead {
+        background-color: #3a7a7b;
+        color: white;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    th {
+        text-align: center;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f3f3f3;
+    }
+
+    tbody tr:hover {
+        background-color: #ddd;
+    }
+
+    td {
+        text-align: center;
+    }

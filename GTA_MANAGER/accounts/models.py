@@ -84,6 +84,18 @@ class Vehicles(models.Model):
         default='Да'
     )
 
+    comp = models.IntegerField(
+        null=True,
+        blank=True
+    )
+
+    def save(self, *args, **kwargs):
+        if self.pk:  # Проверка дали обектът вече съществува
+            old_instance = Vehicles.objects.filter(pk=self.pk).first()
+            if old_instance and old_instance.comp and self.comp is None:
+                self.comp = old_instance.comp  # Запазване на старата стойност на comp
+        super().save(*args, **kwargs)
+
 
 class VehicleFullDetails(models.Model):
     DETAILS_CHOICE = [
@@ -206,3 +218,39 @@ class VehicleFullDetails(models.Model):
         null=True,
         blank=True
     )
+
+    @property
+    def formatted_insurance_civil_liability(self):
+        if self.insurance_civil_liability:
+            return self.insurance_civil_liability.strftime('%d-%m-%Y')
+        return "Няма данни"
+
+    @property
+    def formatted_insurance_casco_validity(self):
+        if self.insurance_casco_validity:
+            return self.insurance_casco_validity.strftime('%d-%m-%Y')
+        return "Няма данни"
+
+    @property
+    def formatted_tachograph_validity(self):
+        if self.tachograph_validity:
+            return self.tachograph_validity.strftime('%d-%m-%Y')
+        return "Няма данни"
+
+    @property
+    def formatted_adr_validity(self):
+        if self.adr_validity:
+            return self.adr_validity.strftime('%d-%m-%Y')
+        return "Няма данни"
+
+    @property
+    def formatted_fitness_protocol_validity(self):
+        if self.fitness_protocol_validity:
+            return self.fitness_protocol_validity.strftime('%d-%m-%Y')
+        return "Няма данни"
+
+    @property
+    def formatted_technical_check_validity(self):
+        if self.technical_check_validity:
+            return self.technical_check_validity.strftime('%d-%m-%Y')
+        return "Няма данни"
