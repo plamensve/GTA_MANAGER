@@ -1,3 +1,5 @@
+import datetime
+
 import openpyxl
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -232,7 +234,7 @@ def generate_vehicle_report(request):
     )
 
     # Добавяне на заглавия
-    header_info = 'ДЖИ ТИ ЕЙ ПЕТРОЛИУМ ООД - АВТОМОБИЛИ / ВЛЕКАЧИ / ЦИСТЕРНИ'
+    header_info = f'ДЖИ ТИ ЕЙ ПЕТРОЛИУМ ООД - АВТОМОБИЛИ / ВЛЕКАЧИ / ЦИСТЕРНИ <<{datetime.datetime.now().strftime('%d-%m-%Y')}>>'
     ws.append([header_info])
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=6)  # Обединяване на клетките
     header_cell = ws.cell(row=1, column=1)
@@ -492,7 +494,7 @@ def export_to_excel(request):
     )
 
     # Заглавие на таблицата
-    header_info = 'ДЖИ ТИ ЕЙ ПЕТРОЛИУМ ООД - Придружаващи документи'
+    header_info = f"ДЖИ ТИ ЕЙ ПЕТРОЛИУМ ООД - Придружаващи документи <<{datetime.datetime.now().strftime('%d-%m-%Y')}>>"
     ws.append([header_info])
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=8)
     header_cell = ws.cell(row=1, column=1)
