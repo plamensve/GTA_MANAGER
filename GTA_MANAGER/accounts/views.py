@@ -1,3 +1,4 @@
+import openpyxl
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
@@ -358,13 +359,25 @@ def generate_vehicle_report_info(request):
     for idx, vehicle_detail in enumerate(all_vehicles, start=1):
         row = [
             idx,
-            vehicle_detail.vehicle.register_number or 'Няма данни',
-            vehicle_detail.insurance_civil_liability or 'Няма данни',
-            vehicle_detail.insurance_casco_validity or 'Няма данни',
-            vehicle_detail.tachograph_validity or 'Няма данни',
-            vehicle_detail.adr_validity or 'Няма данни',
-            vehicle_detail.fitness_protocol_validity or 'Няма данни',
-            vehicle_detail.technical_check_validity or 'Няма данни',
+            vehicle_detail.vehicle.register_number or 'N/A',
+
+            vehicle_detail.insurance_civil_liability.strftime('%d-%m-%Y')
+            if vehicle_detail.insurance_civil_liability else 'N/A',
+
+            vehicle_detail.insurance_casco_validity.strftime('%d-%m-%Y')
+            if vehicle_detail.insurance_casco_validity else 'N/A',
+
+            vehicle_detail.tachograph_validity.strftime('%d-%m-%Y')
+            if vehicle_detail.tachograph_validity else 'N/A',
+
+            vehicle_detail.adr_validity.strftime('%d-%m-%Y')
+            if vehicle_detail.adr_validity else 'N/A',
+
+            vehicle_detail.fitness_protocol_validity.strftime('%d-%m-%Y')
+            if vehicle_detail.fitness_protocol_validity else 'N/A',
+
+            vehicle_detail.technical_check_validity.strftime('%d-%m-%Y')
+            if vehicle_detail.technical_check_validity else 'N/A',
         ]
         # Добавете реда към вашия Excel файл или друг изход
         ws.append(row)
@@ -407,33 +420,45 @@ def freight_trains(request):
 
                 truck_insurance = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
                 tank_insurance = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
-                (insurance_civil_liability
-                 .append(f"{truck_insurance.insurance_civil_liability} / {tank_insurance.insurance_civil_liability}"))
+                insurance_civil_liability.append(
+                    f"{truck_insurance.insurance_civil_liability.strftime('%d-%m-%Y') if truck_insurance.insurance_civil_liability else 'N/A'} / "
+                    f"{tank_insurance.insurance_civil_liability.strftime('%d-%m-%Y') if tank_insurance.insurance_civil_liability else 'N/A'}"
+                )
 
                 truck_casco = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
                 tank_casco = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
-                (casco_validity
-                 .append(f"{truck_casco.insurance_casco_validity} / {tank_casco.insurance_casco_validity}"))
+                casco_validity.append(
+                    f"{truck_casco.insurance_casco_validity.strftime('%d-%m-%Y') if truck_casco.insurance_casco_validity else 'N/A'} / "
+                    f"{tank_casco.insurance_casco_validity.strftime('%d-%m-%Y') if tank_casco.insurance_casco_validity else 'N/A'}"
+                )
 
                 truck_tachograph_validity = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
                 tank_tachograph_validity = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
-                (tachograph_validity
-                 .append(f"{truck_tachograph_validity.tachograph_validity} / {tank_tachograph_validity.tachograph_validity}"))
+                tachograph_validity.append(
+                    f"{truck_tachograph_validity.tachograph_validity.strftime('%d-%m-%Y') if truck_tachograph_validity.tachograph_validity else 'N/A'} / "
+                    f"{tank_tachograph_validity.tachograph_validity.strftime('%d-%m-%Y') if tank_tachograph_validity.tachograph_validity else 'N/A'}"
+                )
 
                 truck_adr = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
                 tank_adr = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
-                (adr
-                 .append(f"{truck_adr.adr_validity} / {tank_adr.adr_validity}"))
+                adr.append(
+                    f"{truck_adr.adr_validity.strftime('%d-%m-%Y') if truck_adr.adr_validity else 'N/A'} / "
+                    f"{tank_adr.adr_validity.strftime('%d-%m-%Y') if tank_adr.adr_validity else 'N/A'}"
+                )
 
                 truck_fitness = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
                 tank_fitness = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
-                (fitness_protocol_validity
-                 .append(f"{truck_fitness.fitness_protocol_validity} / {tank_fitness.fitness_protocol_validity}"))
+                fitness_protocol_validity.append(
+                    f"{truck_fitness.fitness_protocol_validity.strftime('%d-%m-%Y') if truck_fitness.fitness_protocol_validity else 'N/A'} / "
+                    f"{tank_fitness.fitness_protocol_validity.strftime('%d-%m-%Y') if tank_fitness.fitness_protocol_validity else 'N/A'}"
+                )
 
                 truck_technical_check = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
                 tank_technical_check = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
-                (technical_check_validity
-                 .append(f"{truck_technical_check.technical_check_validity} / {tank_technical_check.technical_check_validity}"))
+                technical_check_validity.append(
+                    f"{truck_technical_check.technical_check_validity.strftime('%d-%m-%Y') if truck_technical_check.technical_check_validity else 'N/A'} / "
+                    f"{tank_technical_check.technical_check_validity.strftime('%d-%m-%Y') if tank_technical_check.technical_check_validity else 'N/A'}"
+                )
 
     context = {
         'trucks': trucks,
@@ -450,7 +475,94 @@ def freight_trains(request):
     return render(request, 'vehicles/freight-trains.html', context)
 
 
+def export_to_excel(request):
+    # Създаване на нов Excel файл
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Документи"
+
+    # Стилове
+    bold_font = Font(bold=True, size=12)
+    center_alignment = Alignment(horizontal='center', vertical='center')
+    border = Border(
+        left=Side(border_style='thin'),
+        right=Side(border_style='thin'),
+        top=Side(border_style='thin'),
+        bottom=Side(border_style='thin')
+    )
+
+    # Заглавие на таблицата
+    header_info = 'ДЖИ ТИ ЕЙ ПЕТРОЛИУМ ООД - Придружаващи документи'
+    ws.append([header_info])
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=8)
+    header_cell = ws.cell(row=1, column=1)
+    header_cell.font = Font(bold=True, size=16)
+    header_cell.alignment = center_alignment
+
+    # Заглавия на колоните
+    headers = [
+        "№", "Състав", "Гражданска отговорност", "Каско",
+        "Тахограф", "АДР", "Протокол за годност", "Технически преглед"
+    ]
+    ws.append(headers)
+
+    for col_num, header in enumerate(headers, start=1):
+        cell = ws.cell(row=2, column=col_num)
+        cell.font = bold_font
+        cell.alignment = center_alignment
+        cell.border = border
+
+    # Данни за таблицата
+    trucks = Vehicles.objects.filter(type='ВЛЕКАЧ')
+    tanks = Vehicles.objects.filter(type='ЦИСТЕРНА')
+    row_index = 3
+
+    for idx, tr in enumerate(trucks, start=1):
+        for tn in tanks:
+            if tn.comp == tr.comp:  # Проверка за съвпадение
+                composition = f"{tr.register_number} / {tn.register_number}"
+
+                truck_detail = VehicleFullDetails.objects.get(vehicle_id=tr.pk)
+                tank_detail = VehicleFullDetails.objects.get(vehicle_id=tn.pk)
+
+                row = [
+                    idx,
+                    composition,
+                    f"{truck_detail.insurance_civil_liability.strftime('%d-%m-%Y') if truck_detail.insurance_civil_liability else 'N/A'} / "
+                    f"{tank_detail.insurance_civil_liability.strftime('%d-%m-%Y') if tank_detail.insurance_civil_liability else 'N/A'}",
+                    f"{truck_detail.insurance_casco_validity.strftime('%d-%m-%Y') if truck_detail.insurance_casco_validity else 'N/A'} / "
+                    f"{tank_detail.insurance_casco_validity.strftime('%d-%m-%Y') if tank_detail.insurance_casco_validity else 'N/A'}",
+                    f"{truck_detail.tachograph_validity.strftime('%d-%m-%Y') if truck_detail.tachograph_validity else 'N/A'} / "
+                    f"{tank_detail.tachograph_validity.strftime('%d-%m-%Y') if tank_detail.tachograph_validity else 'N/A'}",
+                    f"{truck_detail.adr_validity.strftime('%d-%m-%Y') if truck_detail.adr_validity else 'N/A'} / "
+                    f"{tank_detail.adr_validity.strftime('%d-%m-%Y') if tank_detail.adr_validity else 'N/A'}",
+                    f"{truck_detail.fitness_protocol_validity.strftime('%d-%m-%Y') if truck_detail.fitness_protocol_validity else 'N/A'} / "
+                    f"{tank_detail.fitness_protocol_validity.strftime('%d-%m-%Y') if tank_detail.fitness_protocol_validity else 'N/A'}",
+                    f"{truck_detail.technical_check_validity.strftime('%d-%m-%Y') if truck_detail.technical_check_validity else 'N/A'} / "
+                    f"{tank_detail.technical_check_validity.strftime('%d-%m-%Y') if tank_detail.technical_check_validity else 'N/A'}",
+                ]
+
+                ws.append(row)
+
+                for col_num, value in enumerate(row, start=1):
+                    cell = ws.cell(row=row_index, column=col_num)
+                    cell.alignment = center_alignment
+                    cell.border = border
+
+                row_index += 1
+
+    # Индивидуална ширина на колоните
+    column_widths = [5, 25, 30, 30, 25, 25, 30, 30]
+    for col_num, width in enumerate(column_widths, start=1):
+        col_letter = ws.cell(row=2, column=col_num).column_letter
+        ws.column_dimensions[col_letter].width = width
+
+    # Отговора като Excel файл
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename="Freight_Trains_Report.xlsx"'
+    wb.save(response)
+    return response
+
+
 def after_register(request):
     return render(request, 'after-register.html')
-
-

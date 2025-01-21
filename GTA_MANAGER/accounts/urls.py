@@ -19,5 +19,6 @@ urlpatterns = (
     path('generate-report-info/', views.generate_vehicle_report_info, name='generate_report_info'),
     path('send-email/', views.send_email, name='send_email'),
     path('after-register/', views.after_register, name='after-register'),
-    path('freight-trains/', views.freight_trains, name='freight_trains')
+    path('freight-trains/', views.freight_trains, name='freight_trains'),
+    path('export-excel/', views.export_to_excel, name='export_to_excel'),
 )

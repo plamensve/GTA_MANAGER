@@ -7,7 +7,7 @@
 .composition {
     display: inline-block;
     margin-bottom: 40px;
-    padding: 80px;
+    padding: 120px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -77,4 +77,8 @@ table {
 
     td {
         text-align: center;
+    }
+
+    #export-button {
+        margin-top: -110px;
     }
